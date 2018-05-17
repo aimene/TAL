@@ -25,7 +25,7 @@
       <file leaf-file-name="TALApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/TALApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="97">
               <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -184,12 +184,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526548276182</updated>
-      <workItem from="1526548282843" duration="1169000" />
+      <workItem from="1526548282843" duration="1879000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1169000" />
+    <option name="totallyTimeSpent" value="1879000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -214,8 +214,8 @@
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32847896" />
       <window_info anchor="bottom" id="Run" order="9" weight="0.31877023" />
       <window_info anchor="bottom" id="Spring" order="3" weight="0.32847896" />
-      <window_info anchor="bottom" id="Terminal" order="4" visible="true" weight="0.41086587" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.18697956" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="4" visible="true" weight="0.41086587" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.18697956" />
       <window_info anchor="right" id="Bean Validation" order="4" weight="0.32980332" />
       <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="5" />
@@ -245,7 +245,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TALApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="97">
           <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
