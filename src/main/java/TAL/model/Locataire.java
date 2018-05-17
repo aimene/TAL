@@ -19,7 +19,7 @@ public class Locataire {
     private Date dateNaissance ;
     @NotNull
     private String sexe;
-;
+
     @NotNull
     private String pseudo;
     @NotNull
