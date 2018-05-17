@@ -56,6 +56,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="page-header-fixed page-full-width">
+<jsp:include page="seconnecter.jsp"/>
+<jsp:include page="s'inscrire.jsp"/>
 <!-- BEGIN HEADER -->
 <div class="header navbar navbar-inverse navbar-fixed-top ">
     <!-- BEGIN TOP NAVIGATION BAR -->
@@ -254,132 +256,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         </div>
 
 
-        <div id="responsive" class="modal fade" tabindex="-1" data-width="600" style="border-radius: 30px !important;">
-            <div class="modal-header" style="background-color: black !important;border-radius: 30px !important; ">
-                <a class="navbar-brand" href="index.html"  style="padding: 0;margin: 0"  >
-                    <img src="assets/image/talocationlogo.png" alt="logo" style="" />
-                </a>
-
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title" style=" color: #e02222 !important; font-weight: 1000 !important; margin-left:40%">Inscription</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <form action="#">
-
-                            <div class="form-action top">
-                                <div class="form-group">
-                                    <label class="control-label">Nom :</label>
-                                    <input type="text" class="form-control" placeholder="Nom" name="nom" required="required">
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Prénom :</label>
-                                    <input type="text" class="form-control" placeholder="Prénom" name="prénom" required="required">
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="c control-label">Sexe :</label>
-
-                                    <select class="form-control" name="sexe" required="required">
-                                        <option>homme</option>
-                                        <option>femme</option>
-
-                                    </select>
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Numéro de permis :</label>
-                                    <input type="number" class="form-control" placeholder="Numéro de premis" name="numpermis" required="required">
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Numéro de téléphone :</label>
-                                    <input type="text" class="form-control" placeholder="Numéro de téléphone" name="numtlp" required="required">
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Email </label>
-                                    <div class="input-group">
-
-                                        <input type="email" class="form-control" placeholder="Email " name="email" required="required">
-                                        <span class="input-group-addon"><i class="icon-envelope"></i></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label">Mot de passe</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" placeholder="Mo de passe" name="motdepasse" required="required">
-                                        <span class="input-group-addon"><i class="icon-user"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Pseudo :</label>
-                                    <input type="text" class="form-control" placeholder="pseudo" name="pseudo" required="required">
-
-                                </div>
-
-
-                            </div>
-
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn red">Annuler</button>
-                <button type="button" class="btn green">S'inscrire</button>
-            </div>
-        </div>
-
-        <div id="seconnecter" class="modal fade" tabindex="-1" data-width="500" style="border-radius: 30px !important;">
-            <div class="modal-header" style="background-color: black !important;border-radius: 30px !important; ">
-                <a class="navbar-brand" href="index.html"  style="padding: 0;margin: 0"  >
-                    <img src="assets/image/talocationlogo.png" alt="logo" style="" />
-                </a>
-
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title" style=" color: #e02222 !important; font-weight: 1000 !important; margin-left:40%">Connexion</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <form action="#">
-
-                            <div class="form-group">
-                                <label class="control-label">Email </label>
-                                <div class="input-group">
-
-                                    <input type="email" class="form-control" placeholder="Email " name="email" required="required">
-                                    <span class="input-group-addon"><i class="icon-envelope"></i></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Mot de passe</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="Mo de passe" name="motdepasse" required="required">
-                                    <span class="input-group-addon"><i class="icon-user"></i></span>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn red">Annuler</button>
-                <button type="button" class="btn green">Se connecter</button>
-            </div>
-        </div>
 
 
         <div class="row">
