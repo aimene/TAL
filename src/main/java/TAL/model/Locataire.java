@@ -33,7 +33,7 @@ public class Locataire {
     @NotNull
     private String etat;
     @NotNull
-    private String session;
+    private int session;
 
     @NotNull
     private String codeActivation;
@@ -126,11 +126,11 @@ public class Locataire {
         this.etat = etat;
     }
 
-    public String getSession() {
+    public int getSession() {
         return session;
     }
 
-    public void setSession(String session) {
+    public void setSession(int session) {
         this.session = session;
     }
 
