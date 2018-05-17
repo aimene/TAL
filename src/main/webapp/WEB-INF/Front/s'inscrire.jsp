@@ -34,7 +34,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         </div>
                         <div class="form-group">
                             <label class="control-label">Prénom :</label>
-                            <input type="text" class="form-control" placeholder="Prénom" name="prénom" required="required">
+                            <input type="text" class="form-control" placeholder="Prénom" name="prenom" required="required">
 
                         </div>
                         <div class="form-group">
@@ -54,7 +54,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         </div>
                         <div class="form-group">
                             <label class="control-label">Numéro de téléphone :</label>
-                            <input type="text" class="form-control" placeholder="Numéro de téléphone" name="numtlp" required="required">
+                            <input type="text" class="form-control" placeholder="Numéro de téléphone" name="numTlp" required="required">
 
                         </div>
                         <div class="form-group">
