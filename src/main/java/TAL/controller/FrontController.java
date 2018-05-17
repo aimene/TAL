@@ -1,18 +1,25 @@
 package TAL.controller;
 
 import TAL.Repository.RequetesLocataire;
+import TAL.model.Locataire;
+import TAL.service.FrontService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 @SessionAttributes("pseudo")
 public class FrontController {
 
     @Autowired
-    RequetesLocataire requetesLocataire;
+    FrontService frontService;
 
 
     @RequestMapping(value="/index.html",method= RequestMethod.GET)
@@ -36,11 +43,22 @@ public class FrontController {
         return"Front/réserver";
     }
 
-    @RequestMapping(value="/connexion.html",method= RequestMethod .GET)
-    public String connexionPage ()
-    {
-        return"front/connexion";
-    }
+    @RequestMapping(value="/inscription",method= RequestMethod .POST)
+    public String inscription (@ModelAttribute("locataire") Locataire locataire, Map<String, String> model) throws MessagingException {
+
+
+            locataire.setEtat("inactif");
+            locataire.setCodeActivation(frontService.generateActivationCode());
+
+            if (frontService.testepseudo(locataire.getPseudo())){
+                frontService.ajouterLocataire(locataire);
+                return "Front/activation";
+            }else{
+                return "";
+            }
+
+
+    };
 
 
 

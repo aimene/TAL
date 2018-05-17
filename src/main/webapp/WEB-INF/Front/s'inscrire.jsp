@@ -24,7 +24,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <div class="row">
             <div class="col-md-12">
 
-                <form action="#">
+                <form  action="/inscription" modelAttribute="locataire" method="post">
 
                     <div class="form-action top">
                         <div class="form-group">
@@ -54,7 +54,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         </div>
                         <div class="form-group">
                             <label class="control-label">Numéro de permis :</label>
-                            <input type="number" class="form-control" placeholder="Numéro de premis" name="numpermis" required="required">
+                            <input type="number" class="form-control" placeholder="Numéro de premis" name="numPermis" required="required">
 
                         </div>
                         <div class="form-group">
@@ -88,14 +88,16 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
                     </div>
 
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn red">Annuler</button>
+                        <button type="submit" class="btn green">S'inscrire</button>
+                    </div>
+
                 </form>
             </div>
 
         </div>
     </div>
 
-    <div class="modal-footer">
-        <button type="button" data-dismiss="modal" class="btn red">Annuler</button>
-        <button type="button" class="btn green">S'inscrire</button>
-    </div>
+
 </div>
