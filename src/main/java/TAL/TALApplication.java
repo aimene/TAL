@@ -15,9 +15,6 @@ public class TALApplication  extends SpringBootServletInitializer {
     }
 
 
-
-
-
     public static void main(String[] args) {
         SpringApplication.run(TALApplication.class, args);}
 }
