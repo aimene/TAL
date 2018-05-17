@@ -2,6 +2,7 @@ package TAL.controller;
 
 import TAL.Repository.RequetesLocataire;
 import TAL.model.Locataire;
+import TAL.service.FrontService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class FrontController {
 
     @Autowired
-    RequetesLocataire requetesLocataire;
+    FrontService frontService;
 
 
     @RequestMapping(value="/index.html",method= RequestMethod.GET)
@@ -46,7 +47,17 @@ public class FrontController {
     public String inscription (@ModelAttribute("locataire") Locataire locataire, Map<String, String> model) throws MessagingException {
 
 
-        return "Front/espacelocataire";
+            locataire.setEtat("inactif");
+            locataire.setCodeActivation(frontService.generateActivationCode());
+
+            if (frontService.testepseudo(locataire.getPseudo())){
+                frontService.ajouterLocataire(locataire);
+                return "Front/activation";
+            }else{
+                return "";
+            }
+
+
     };
 
 
