@@ -48,6 +48,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
                         </div>
                         <div class="form-group">
+                            <label class="control-label">Date de naissance :</label>
+                            <input type="date" class="form-control"  name="dateNaissance " required="required">
+
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Numéro de permis :</label>
                             <input type="number" class="form-control" placeholder="Numéro de premis" name="numpermis" required="required">
 
@@ -78,6 +83,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                             <input type="text" class="form-control" placeholder="pseudo" name="pseudo" required="required">
 
                         </div>
+
 
 
                     </div>
