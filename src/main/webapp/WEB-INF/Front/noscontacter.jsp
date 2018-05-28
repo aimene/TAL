@@ -50,74 +50,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- BEGIN HEADER -->
 <div class="header navbar navbar-inverse navbar-fixed-top " ">
 <!-- BEGIN TOP NAVIGATION BAR -->
-<div class="header-inner container">
-    <!-- BEGIN LOGO -->
-    <a class="navbar-brand" href="index.html"  style="padding: 7px;"  >
-        <img src="assets/image/talocationlogo.png" alt="logo" style="" />
-    </a>
-    <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <img src="assets/img/menu-toggler.png" alt="" />
-    </a>
-    <!-- END LOGO -->
-    <!-- BEGIN HORIZANTAL MENU -->
-    <div class="hor-menu hidden-sm hidden-xs pull-right">
-        <ul class="nav navbar-nav">
-
-            <li  >
-                <a class="btn">
-
-                    Accueil
-
-                </a>
-
-            </li>
-            <li >
-                <a class="btn">
-
-                    Réserver
-                </a>
-            </li>
-            <li  >
-                <a class="btn">Conditions de locations
-
-                </a>
-
-            </li>
-            <li class="active">
-                <a class="btn">Nos contacter</a>
-                <span class="selected"></span>
-            </li>
-            <li  >
-                <a class="btn" >A propos
-
-                </a>
-
-            </li>
-            <li>
-                <a class="btn" >S'inscrire
-
-                </a>
-
-            </li>
-            <li  >
-                <a class="btn">Se connecter
-
-                </a>
-
-            </li>
-
-        </ul>
-    </div>
-    <!-- END HORIZANTAL MENU -->
-    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-    <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-
-    </a>
-    <!-- END RESPONSIVE MENU TOGGLER -->
-    <!-- BEGIN TOP NAVIGATION MENU -->
-
-    <!-- END TOP NAVIGATION MENU -->
-</div>
+<jsp:include page="navbar.jsp"></jsp:include>
 <!-- END TOP NAVIGATION BAR -->
 </div>
 <!-- END HEADER -->
@@ -126,53 +59,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <div class="container" style=" margin-top: 30px;">
     <!-- BEGIN EMPTY PAGE SIDEBAR -->
     <div class="page-sidebar navbar-collapse collapse">
-        <ul class="page-sidebar-menu visible-sm visible-xs">
+        <jsp:include page="sidebar.jsp"></jsp:include>
 
-            <li  >
-                <a class="btn">
-
-                    Accueil
-                    <span ></span>
-                </a>
-
-            </li>
-            <li >
-                <a class="btn">
-
-                    Réserver
-                </a>
-            </li>
-            <li  >
-                <a class="btn">Conditions de locations
-
-                </a>
-
-            </li>
-            <li class="active">
-                <a class="btn">Nos contacter</a>
-                <span class="selected"></span>
-
-            </li>
-            <li  >
-                <a class="btn" >A propos
-
-                </a>
-
-            </li>
-            <li>
-                <a class="btn" >S'inscrire
-
-                </a>
-
-            </li>
-            <li  >
-                <a class="btn">Se connecter
-
-                </a>
-
-            </li>
-
-        </ul>
     </div>
     <!-- END EMPTY PAGE SIDEBAR -->
     <!-- BEGIN PAGE -->
@@ -216,24 +104,32 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                     </div>
                     <div class="col-md-6">
                         <div class="space20"></div>
+                        <% if( request.getAttribute("success")!=null ){%>
+                        <% if( (boolean)request.getAttribute("success") ){%>
+
+                        <div class="note note-success">
+                            <h4 class="block">Votre feedback a été bien envoyé</h4>
+
+                        </div>
+                        <% }};%>
                         <!-- BEGIN FORM-->
-                        <form action="#" class="horizontal-form">
+                        <form action="/feedback" class="horizontal-form" method="post" ModelAttribute="feedback">
                             <h3 class="form-section">Feedback</h3>
                             <div class="form-group">
                                 <label class="control-label">Nom et Prénom</label>
-                                <input type="text" class="form-control col-md-12" />
+                                <input type="text" class="form-control col-md-12" name="nomprenom"  required="required"  />
                             </div>
                             <div class="form-group">
                                 <label class="control-label" >Email</label>
-                                <input type="text" class="form-control col-md-12" >
+                                <input type="text" class="form-control col-md-12" name="email" required="required" >
                             </div>
                             <div class="form-group">
                                 <label class="control-label" >Message</label>
-                                <textarea class="form-control col-md-12" rows="3"></textarea>
+                                <textarea class="form-control col-md-12" rows="3" name="message" required="required"></textarea>
                             </div>
                             <div class="margin-top-10">
                                 <button type="submit" class="btn blue"><i class="icon-ok"></i> Envoyer</button>
-                                <button type="button" class="btn">Annuler</button>
+                                <button type="reset" class="btn">Annuler</button>
                             </div>
                         </form>
                         <!-- END FORM-->

@@ -1,7 +1,9 @@
 package TAL.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @Entity
@@ -21,8 +23,13 @@ public class Locataire {
     private String sexe;
 
     @NotNull
+    @Column(unique = true)
     private String pseudo;
+
     @NotNull
+    @Email
+    @Size(max = 100)
+    @Column(unique = true)
     private String email;
     @NotNull
     private String motdepasse;

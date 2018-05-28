@@ -9,6 +9,7 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idLocation;
+
     private int idLocataire;
     private int idVehicule;
     private Date dateD ;

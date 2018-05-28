@@ -67,9 +67,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <style type="">
-
-        body{
-
+    body{
+        background-color: whitesmoke !important;
         }
         label{
             color: #eeedf2 ;margin-left: 0%;font-size: 1.5em;border-radius: 20px !important;
@@ -86,9 +85,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         }
         #entete{
 
-            margin-left: 20%;
+
             margin-top: 1%;
-            margin-bottom: 3%;
+            margin-bottom: 1%;
 
             color: #d84a38;
             font-size: 2.5em;
@@ -145,134 +144,21 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- BEGIN HEADER -->
 <div class="header navbar navbar-inverse navbar-fixed-top ">
     <!-- BEGIN TOP NAVIGATION BAR -->
-    <div class="header-inner container">
-        <!-- BEGIN LOGO -->
-        <a class="navbar-brand" href="index.html" style="padding: 7px;"  >
-            <img src="assets/image/talocationlogo.png" alt="logo" style="" />
-        </a>
-        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <img src="assets/img/menu-toggler.png" alt="" />
-        </a>
-        <!-- END LOGO -->
-        <!-- BEGIN HORIZANTAL MENU -->
-        <div class="hor-menu hidden-sm hidden-xs pull-right">
-            <ul class="nav navbar-nav">
-
-                <li  >
-                    <a class="btn">
-
-                        Accueil
-
-                    </a>
-
-                </li>
-                <li class="active" >
-                    <a class="btn">
-
-                        Réserver
-                    </a>
-                    <span class="selected"></span>
-                </li>
-                <li  >
-                    <a class="btn">Conditions de locations
-
-                    </a>
-
-                </li>
-                <li >
-                    <a class="btn" href="noscontacter.html">Nos contacter</a>
-
-                </li>
-                <li  >
-                    <a class="btn" href="apropos.html">A propos
-
-                    </a>
-
-                </li>
-                <li>
-                    <a class="btn" >S'inscrire
-
-                    </a>
-
-                </li>
-                <li  >
-                    <a class="btn">Se connecter
-
-                    </a>
-
-                </li>
-
-            </ul>
-        </div>
-        <!-- END HORIZANTAL MENU -->
-        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-
-        </a>
-        <!-- END RESPONSIVE MENU TOGGLER -->
-        <!-- BEGIN TOP NAVIGATION MENU -->
-
-        <!-- END TOP NAVIGATION MENU -->
-    </div>
+    <jsp:include page="navbar.jsp"></jsp:include>
     <!-- END TOP NAVIGATION BAR -->
 </div>
 <!-- END HEADER -->
 <div class="clearfix"></div>
 <!-- BEGIN CONTAINER -->
-<div class="container"  style=" margin-top: 30px; ">
+<div class="page-container"  style=" margin-top: -5px !important; ">
     <!-- BEGIN EMPTY PAGE SIDEBAR -->
     <div class="page-sidebar navbar-collapse collapse">
-        <ul class="page-sidebar-menu visible-sm visible-xs">
+        <jsp:include page="sidebar.jsp"></jsp:include>
 
-            <li  >
-                <a class="btn">
-
-                    Accueil
-
-                </a>
-
-            </li>
-            <li class="active" >
-                <a class="btn">
-
-                    Réserver
-                </a>
-                <span class="selected"></span>
-            </li>
-            <li  >
-                <a class="btn">Conditions de locations
-
-                </a>
-
-            </li>
-            <li >
-                <a class="btn">Nos contacter</a>
-
-            </li>
-            <li  >
-                <a class="btn">A propos
-
-                </a>
-
-            </li>
-            <li>
-                <a class="btn" >S'inscrire
-
-                </a>
-
-            </li>
-            <li  >
-                <a class="btn">Se connecter
-
-                </a>
-
-            </li>
-
-        </ul>
     </div>
     <!-- END EMPTY PAGE SIDEBAR -->
     <!-- BEGIN PAGE -->
-    <div class="page-content" style="background-color: #eeedf2 !important;">
+    <div class="page-content" style="background-color: whitesmoke !important">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
         <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -294,26 +180,23 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             <!-- /.modal-dialog -->
 
         </div>
-        <div class="container">
-
+        <div class="page-container">
             <div id="filter" style="">
                 <div class="row">
                     <p class=" form-group col-md-12" id="entete" >Trouvez le véhicule qui vous convient</p>
                 </div>
 
-                <div  id="row"   >
+                <div  class="row"   >
 
-                    <div class="form-group   " >
+                    <div class="form-group col-md-2  " >
                         <label style="">Type de réservation</label>
-                        <select class="form-control btn red    col-md-12"  id="typeréservation">
+                        <select class="form-control btn red    "  id="typeréservation">
                             <option class="type" value="parjours" >Par jours</option>
                             <option class="type" value="parheures" >Par heures</option>
                         </select>
                     </div>
 
-                </div>
 
-                <div class="row">
                     <div class="form-group col-md-2  ">
                         <label style="">Catégorié</label>
                         <select class="form-control btn red    col-md-12" >
@@ -350,80 +233,81 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         </select>
                     </div>
 
-                    <div class="form-group col-md-2 ">
+                    <div class="form-group col-md-4 ">
                         <label class=" control-label "> Prix max</label>
                         <div class=" col-md-12" >
                             <input id="range_2" type="text" name="range_2" value="1000;10000" data-type="" data-step="500" data-postfix="da" data-from="3000" data-to="90000" data-hasgrid="true"  />
                         </div>
                     </div>
 
-                </div>
+                    <div id="parjour" class="rw">
+                        <div class="form-group col-md-6">
+                            <label class=" ">Date Début/fin</label>
+
+                            <div class="input-group  date-picker input-daterange  "  data-date="10/11/2012" data-date-format="dd/mm/yyyy">
+                                <span class="input-group-addon">de</span>
+                                <input  type="text" class="form-control btn red " name="from" placeholder="jj/mm/aaaa">
+
+                                <span class="input-group-addon">à</span>
+                                <input type="text" class="form-control btn red" name="to" placeholder="jj/mm/aaaa">
 
 
-                <div id="parjour" class="row">
-                    <div class="form-group col-md-12">
-                        <label class=" ">Date Début/fin</label>
-
-                        <div class="input-group  date-picker input-daterange  "  data-date="10/11/2012" data-date-format="dd/mm/yyyy">
-                            <span class="input-group-addon">de</span>
-                            <input  type="text" class="form-control btn red " name="from" placeholder="jj/mm/aaaa">
-
-                            <span class="input-group-addon">à</span>
-                            <input type="text" class="form-control btn red" name="to" placeholder="jj/mm/aaaa">
-
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-                <div id="parheure" class="row">
-
-                    <div class="form-group col-md-4">
-                        <label class=" ">Date Début</label>
-                        <div class=" ">
-                            <div class="input-group  date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
-
-                                <input type="text" class="form-control btn red" name="from" placeholder="jj/mm/aaaa">
-                                <span class="input-group-btn">
-                                        <button class="btn default" type="button"><i class="icon-calendar"></i></button>
-                                        </span>
                             </div>
 
+
                         </div>
+
                     </div>
+                    <div id="parheure" class="rw">
 
-                    <div class="form-group col-md-4">
-                        <label class=" ">Heure Début</label>
+                        <div class="form-group col-md-3">
+                            <label class=" ">Date Début</label>
+                            <div class=" ">
+                                <div class="input-group  date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
 
-
-
-
-                        <div class="input-group ">
-                            <input type="text" id="clockface_2" value="08:30" class="form-control btn red" style="background-color: #d84a38 !important" readonly="">
-                            <span class="input-group-btn">
-                                        <button class="btn default" type="button"  id="clockface_2_toggle"><i class="icon-time"></i></button>
+                                    <input type="text" class="form-control btn red" name="from" placeholder="jj/mm/aaaa">
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="icon-calendar"></i></button>
                                         </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class=" ">Heure Début</label>
+
+
+
+
+                            <div class="input-group ">
+                                <input type="text" id="clockface_2" value="08:30" class="form-control btn red" style="background-color: #d84a38 !important" readonly="">
+                                <span class="input-group-btn">
+                                        <button class="btn default" type="button"  id="clockface_2_toggle"><i class="icon-time"></i></button>
+                                </span>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class=" ">Nombre d'heures </label>
+
+
+                            <div class="input-group ">
+                                <input type="number"  class=" form-control  btn red col-md-12"   >
+
+                            </div>
+                            <
                         </div>
 
 
-
-
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class=" ">Nombre d'heures </label>
-
-
-                        <div class="input-group ">
-                            <input type="number"  class=" form-control  btn red col-md-12"   >
-
-                        </div>
-                        <
-                    </div>
-
 
                 </div>
+
+
 
                 <div class="row" style="margin-top: 2%">
 
@@ -434,10 +318,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                 </div>
 
             </div>
+        </div>
+
+        <div class="container">
+
+
 
 
             <div class="row" id="affichage">
-                <div class="col-md-4" >
+                <div class="col-md-3" >
                     <div class="thumbnail" style="">
                         <img src="http://tech.firstpost.com/wp-content/uploads/2014/09/Apple_iPhone6_Reuters.jpg" alt="" class="img-responsive">
                         <div class="caption">

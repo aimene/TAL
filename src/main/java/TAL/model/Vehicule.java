@@ -11,20 +11,33 @@ public class Vehicule {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idVehicule;
 
-    private int idDepot;
+
+
+    @ManyToOne
+    @JoinColumn(name = "idDepot")
+    private Depot idDepotV;
 
     private String catégorie;
     private String marque ;
     private String modèle;
-    private int matricule ;
+    private String matricule ;
     private String energie;
     private String boite;
-    private int puissance;
+    private String puissance;
     private String couleur;
     private double plj;
     private double plh;
     private double klm;
     private String etat;
+    private  String imagepath;
+
+    public Depot getIdDepot() {
+        return idDepotV;
+    }
+
+    public void setIdDepot(Depot idDepotV) {
+        this.idDepotV = idDepotV;
+    }
 
     public int getIdVehicule() {
         return idVehicule;
@@ -34,13 +47,7 @@ public class Vehicule {
         this.idVehicule = idVehicule;
     }
 
-    public int getIdDepot() {
-        return idDepot;
-    }
 
-    public void setIdDepot(int idDepot) {
-        this.idDepot = idDepot;
-    }
 
     public String getCatégorie() {
         return catégorie;
@@ -66,11 +73,11 @@ public class Vehicule {
         this.modèle = modèle;
     }
 
-    public int getMatricule() {
+    public String getMatricule() {
         return matricule;
     }
 
-    public void setMatricule(int matricule) {
+    public void setMatricule(String matricule) {
         this.matricule = matricule;
     }
 
@@ -90,11 +97,11 @@ public class Vehicule {
         this.boite = boite;
     }
 
-    public int getPuissance() {
+    public String getPuissance() {
         return puissance;
     }
 
-    public void setPuissance(int puissance) {
+    public void setPuissance(String puissance) {
         this.puissance = puissance;
     }
 
@@ -136,5 +143,13 @@ public class Vehicule {
 
     public void setEtat(String etat) {
         this.etat = etat;
+    }
+
+    public String getImagepath() {
+        return imagepath;
+    }
+
+    public void setImagepath(String imagepath) {
+        this.imagepath = imagepath;
     }
 }

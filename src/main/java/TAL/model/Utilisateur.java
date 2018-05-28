@@ -11,13 +11,25 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private int  idUtilisateur;
+    public int  idUtilisateur;
+
+    private int idDepot;
     private String nom ;
     private String prenom;
     private String type ;
     private String motdepasse;
     private String pseudo ;
     private String email;
+
+
+    public int getIdDepot() {
+        return idDepot;
+    }
+
+    public void setIdDepot(int idDepot) {
+        this.idDepot = idDepot;
+    }
+
 
     public String getEtat() {
         return etat;

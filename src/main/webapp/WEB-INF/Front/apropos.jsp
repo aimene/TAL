@@ -50,74 +50,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- BEGIN HEADER -->
 <div class="header navbar navbar-inverse navbar-fixed-top ">
     <!-- BEGIN TOP NAVIGATION BAR -->
-    <div class="header-inner container">
-        <!-- BEGIN LOGO -->
-        <a class="navbar-brand" href="index.html" style="padding: 7px;"  >
-            <img src="assets/image/talocationlogo.png" alt="logo" style="" />
-        </a>
-        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <img src="assets/img/menu-toggler.png" alt="" />
-        </a>
-        <!-- END LOGO -->
-        <!-- BEGIN HORIZANTAL MENU -->
-        <div class="hor-menu hidden-sm hidden-xs pull-right">
-            <ul class="nav navbar-nav">
-
-                <li  >
-                    <a class="btn">
-
-                        Accueil
-
-                    </a>
-
-                </li>
-                <li >
-                    <a class="btn">
-
-                        Réserver
-                    </a>
-                </li>
-                <li  >
-                    <a class="btn">Conditions de locations
-
-                    </a>
-
-                </li>
-                <li >
-                    <a class="btn">Nos contacter</a>
-
-                </li>
-                <li class="active" >
-                    <a class="btn" >A propos
-                        <span class="selected"></span>
-                    </a>
-
-                </li>
-                <li>
-                    <a class="btn" >S'inscrire
-
-                    </a>
-
-                </li>
-                <li  >
-                    <a class="btn">Se connecter
-
-                    </a>
-
-                </li>
-
-            </ul>
-        </div>
-        <!-- END HORIZANTAL MENU -->
-        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-
-        </a>
-        <!-- END RESPONSIVE MENU TOGGLER -->
-        <!-- BEGIN TOP NAVIGATION MENU -->
-
-        <!-- END TOP NAVIGATION MENU -->
-    </div>
+    <jsp:include page="navbar.jsp"></jsp:include>
     <!-- END TOP NAVIGATION BAR -->
 </div>
 <!-- END HEADER -->
@@ -126,52 +59,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <div class="container" style=" margin-top: 30px;" >
     <!-- BEGIN EMPTY PAGE SIDEBAR -->
     <div class="page-sidebar navbar-collapse collapse">
-        <ul class="page-sidebar-menu visible-sm visible-xs">
+        <jsp:include page="sidebar.jsp"></jsp:include>
 
-            <li  >
-                <a class="btn">
-
-                    Accueil
-                    <span ></span>
-                </a>
-
-            </li>
-            <li >
-                <a class="btn">
-
-                    Réserver
-                </a>
-            </li>
-            <li  >
-                <a class="btn">Conditions de locations
-
-                </a>
-
-            </li>
-            <li >
-                <a class="btn">Nos contacter</a>
-
-            </li>
-            <li class="active" >
-                <a class="btn" class="selected">A propos
-
-                </a>
-
-            </li>
-            <li>
-                <a class="btn" >S'inscrire
-
-                </a>
-
-            </li>
-            <li  >
-                <a class="btn">Se connecter
-
-                </a>
-
-            </li>
-
-        </ul>
     </div>
     <!-- END EMPTY PAGE SIDEBAR -->
     <!-- BEGIN PAGE -->
