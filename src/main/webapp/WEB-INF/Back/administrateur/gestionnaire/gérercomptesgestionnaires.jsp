@@ -36,89 +36,7 @@
 <!-- BEGIN BODY -->
 <body class="page-header-fixed page-full-width">
 <!-- BEGIN HEADER -->
-<div class="header navbar navbar-inverse navbar-fixed-top">
-    <!-- BEGIN TOP NAVIGATION BAR -->
-    <div class="header-inner">
-        <!-- BEGIN LOGO -->
-        <a class="navbar-brand" href="/espaceadmin"  style="padding: 7px;"  >
-            <img src="assets/image/talocationlogo.png" alt="logo" style="" />
-        </a>
-        <!-- END LOGO -->
-        <!-- BEGIN HORIZANTAL MENU -->
-      <div class="hor-menu hidden-sm hidden-xs">
-          <ul class="nav navbar-nav">
-              <li >
-                  <a id="réservations" >
-
-                      Réservations
-                  </a>
-              </li>
-              <li  >
-                  <a id="locations">
-
-                      Locations
-
-                  </a>
-
-              </li>
-              <li >
-                  <a id="véhicules" href="/gérervéhicules">Gérer véhicules</a>
-
-              </li>
-
-              <li >
-                  <a id="locataires" href="/gérercompteslocataires" >Gérer comptes locataires
-
-                  </a>
-
-
-              </li>
-              <li  class="active">
-                  <a  id="gestionnaires" href="/gérercomptesgestionnaires">Gérer comptes Gestionnaires
-
-                  </a>
-                  <span class="selected"></span>
-
-
-              </li>
-
-          </ul>
-
-    </div>
-        <!-- END HORIZANTAL MENU -->
-        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <img src="assets/img/menu-toggler.png" alt="" />
-        </a>
-        <!-- END RESPONSIVE MENU TOGGLER -->
-        <!-- BEGIN TOP NAVIGATION MENU -->
-        <ul class="nav navbar-nav pull-right">
-            <!-- BEGIN NOTIFICATION DROPDOWN -->
-
-            <!-- END NOTIFICATION DROPDOWN -->
-            <!-- BEGIN INBOX DROPDOWN -->
-            <!-- BEGIN TODO DROPDOWN -->
-
-            <!-- END TODO DROPDOWN -->
-            <!-- BEGIN USER LOGIN DROPDOWN -->
-            <li class="dropdown user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                    <img alt="" src="assets/img/avatar1_small.jpg"/>
-                    <span class="username">Bob Nilson</span>
-                    <i class="icon-angle-down"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="extra_profile.html"><i class="icon-user"></i> My Profile</a></li>
-
-                    <li><a href="login.html"><i class="icon-key"></i> Se déconnecter</a></li>
-                </ul>
-            </li>
-            <!-- END USER LOGIN DROPDOWN -->
-        </ul>
-        <!-- END TOP NAVIGATION MENU -->
-    </div>
-    <!-- END TOP NAVIGATION BAR -->
-</div>
+<jsp:include page="../../navbar.jsp"></jsp:include>
 <!-- END HEADER -->
 <div class="clearfix"></div>
 <!-- BEGIN CONTAINER -->
@@ -175,61 +93,65 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <h1 id="erreur" style="color: red"></h1>
-                        <form action="#">
+                        <%if (request.getAttribute("ajoutgestionnaire")!=null){
+                            if ((boolean)request.getAttribute("ajoutgestionnaire")){
+                               %> <h1 id="erreur" style="color: green"> Gestionnaire ajouté</h1><%
+                            }else{
+                                %> <h1 id="erreur" style="color: red">pseudo ou email  déja exist</h1><%
+                            }
+                        }%>
+                        <form action="/ajoutergestionnaire" method="post" ModelAttribute="utilisateur">
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="icon-font"></i>
-                                    <input id="nom" type="text" class="form-control" placeholder="Nom" required >
+                                    <input name="nom" type="text" class="form-control" placeholder="Nom" required >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="icon-font"></i>
-                                    <input id="prenom" type="text" class="form-control" placeholder="Prénom" required>
+                                    <input name="prenom" type="text" class="form-control" placeholder="Prénom" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="icon-user"></i>
-                                    <input id="pseudo" type="text" class="form-control" placeholder="Pseudo" required>
+                                    <input name="pseudo" type="text" class="form-control" placeholder="Pseudo" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class=" control-label">Type gestionnaire</label>
                                 <div class="">
-                                    <div class="radio-list">
-                                        <label class="radio-inline">
-                                            <div class="radio" id="uniform-optionsRadios25"><span class=""><input type="radio" name="type" id="optionsRadios25" value="agence" checked=""></span></div> Agence
-                                        </label>
-                                        <label class="radio-inline">
-                                            <div class="radio" id="uniform-optionsRadios26"><span class=""><input type="radio" name="type" id="optionsRadios26" value="dépot" checked=""></span></div> Dépot
-                                        </label>
+                                    <select name="type" class="form-control  input">
+                                        <option value="agence" >Agence</option>
+                                        <option value="depot" >Dépot</option>
 
-                                    </div>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="icon-envelope"></i>
-                                    <input id="idDépot"    type="text" class="form-control" placeholder="Numéro de dépot" required>
+                                    <select id="idDepot"  name="idDepot"    placeholder="Numéro de dépot" required class="form-control  input">
+
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="icon-envelope"></i>
-                                    <input id="email"    type="email" class="form-control" placeholder="Email" required>
+                                    <input   name="email"  type="email" class="form-control" placeholder="Email" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="icon-lock"></i>
-                                    <input id="motdepasse" type="password" class="form-control" placeholder="Mot de passe" required>
+                                    <input  name="motdepasse" type="password" class="form-control" placeholder="Mot de passe" required>
                                 </div>
                             </div>
 
-                            <button id="ajouter"  class="col-md-12 btn red">Ajouter</button>
+                            <button  type="submit" class="col-md-12 btn red">Ajouter</button>
                         </form>
                     </div>
                 </div>
@@ -334,7 +256,7 @@
 
 
 
-    $("#ajouter").click(function() {
+   /* $("#ajouter").click(function() {
 
         var nom = $("#nom").val();
         console.log(nom);
@@ -367,12 +289,15 @@
                 error: function (response) {
                     debugger;
                     alert('error'); }
-            });}
             });
+            });*/
 });
 </script>
 
+    <script type="text/javascript" src="javascript/Back.js">
 
+
+    </script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#myInput").on("keyup", function() {
@@ -387,8 +312,7 @@
 <script src="assets/plugins/excanvas.min.js"></script>
 <script src="assets/plugins/respond.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
+
 
 <script src="assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>

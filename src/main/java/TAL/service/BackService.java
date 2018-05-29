@@ -140,12 +140,41 @@ public class BackService {
         Utilisateur u = requetesUtilisateur.getUtilisateurByPseudo(pseudo);
        return u ;
     }
+    public Utilisateur getUtilisateurByEmail(String email){
+        Utilisateur u = requetesUtilisateur.getUtilisateurByPseudo(email);
+        return u ;
+    }
+
+    //       Depot
+
+    public Depot ajouterDépot (Depot d){
+        return requetesDepot.save(d);
+    }
+
+    public ArrayList<Depot> GetDépotsList(){
+        return (ArrayList<Depot>) requetesDepot.findAll();
+    }
+
+    public ArrayList<Depot> getDépotRestCapacité(){
+        return requetesDepot.getDépotRestCapacité();
+    }
+
 
 
     //Depot
 
     public ArrayList<Depot> ListeDesDepot(){
         return (ArrayList<Depot>)requetesDepot.findAll();
+    }
+    public Depot getDepotById(int idDepot){
+        return requetesDepot.getOne(idDepot);
+    }
+    public void supprimerDepot(Depot depot){
+        requetesDepot.delete(depot);
+    }
+
+    public ArrayList<Vehicule> ListeDesVehiculesDepot(int id){
+        return requetesVehicule.ListesVehiculesDepots( id);
     }
 
 

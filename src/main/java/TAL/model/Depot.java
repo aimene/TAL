@@ -10,7 +10,7 @@ public class Depot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idDepot ;
 
-    private String capacite;
+    private int capacite;
 
     private String adresse;
 
@@ -22,11 +22,11 @@ public class Depot {
         this.idDepot = idDepot;
     }
 
-    public String getCapacite() {
+    public int getCapacite() {
         return capacite;
     }
 
-    public void setCapacite(String capacite) {
+    public void setCapacite(int capacite) {
         this.capacite = capacite;
     }
 

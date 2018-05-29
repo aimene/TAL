@@ -3,6 +3,7 @@ jQuery(document).ready(function() {
     App.init();
     debugger;
 
+
     $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#myTable tr").filter(function() {
@@ -11,10 +12,12 @@ jQuery(document).ready(function() {
     });
 
 
-    UIExtendedModals.init();
+  //  UIExtendedModals.init();
 
-
-
+debugger;
+    ListeDesDepots("idDepotV");
+    ListeDesDepots("idDepot");
+    ListeDesDepots("idDepot1");
 // ajouter véhicule test plj plh
     $(".incorrect").hide();
     $(".correct").hide();
@@ -61,8 +64,8 @@ jQuery(document).ready(function() {
 
         }
     });
-
-
+/*
+    debugger;
     var cleave = new Cleave('.matricule', {
         delimiters: ['-', '-'],
         blocks: [5, 3, 2],
@@ -70,7 +73,7 @@ jQuery(document).ready(function() {
         numericOnly: true
 
     });
-
+    debugger;
     var cleave = new Cleave('#matricule1', {
         delimiters: ['-', '-'],
         blocks: [5, 3, 2],
@@ -78,70 +81,52 @@ jQuery(document).ready(function() {
         numericOnly: true
 
     });
+    debugger;
     var cleave = new Cleave('#klm', {
 
         numericOnly: true
 
     });
+    debugger;
     var cleave = new Cleave('#plj', {
         numericOnly: true
     });
+    debugger;
     var cleave = new Cleave('#plh',{
         numericOnly: true
     });
+    */
 
     var id13 = $("#loadList").val();
     console.log(id13);
-    if (id13!==undefined&&id13!==""){
+    if (id13=="aaa"){
 
-    $.ajax({
-        type: "get",
-        data: {"id":id13},
-        url: "/backend/listedesvehicules",
+        $.ajax({
+            type: "get",
+            url: "/backend/listedesvehicules2",
 
-        dataType: "html",
-        success: function (result) {
-            debugger;
-            $(".success").hide();
-            $("#ajoutervéhicule").hide();
-            $("#gérerfinlocation").hide();
+            dataType: "html",
+            success: function (result) {
+                debugger;
+                $(".success").hide();
 
+                $("#loadList").val("a");
 
-            $("#menu2").show();
-            $("#afficherlistedesvehicules").html(result);
-            $("#loadList").val("");
+                // $("#menu2").show();
+                $("#afficherlistedesvehicules").html(result);
 
-        },
-        error: function (response) {
-            debugger;
-            alert('error'); }
-    }); };
+            },
+            error: function (response) {
+                debugger;
+                alert('error'); }
+        }); };
 
 
 
 
-    //  $("#ajoutervéhicule").hide();
 
-    $("#ajouter").click(function() {
 
-        $("#supprimervéhicule").hide();
 
-        $("#afficherlistedesvehicules").hide();
-
-        $("#menu2").hide();
-        $("#ajoutervéhicule").show();
-
-    });
-    $("#listedesvehicules").click(function() {
-
-        $("#supprimervéhicule").hide();
-
-        $("#afficherlistedesvehicules").empty();
-        $("#afficherlistedesvehicules").show();
-
-        $("#menu2").show();
-
-    });
         // liste des voitures
     $("#listedesvehicules").click(function() {
         var id ="listevoitures";
@@ -168,7 +153,7 @@ jQuery(document).ready(function() {
                 alert('error'); }
         });  });
        // liste des bus
-    $("#listebus").click(function() {
+   /* $("#listebus").click(function() {
         var id ="listebus";
         console.log(id);
         debugger;
@@ -192,9 +177,9 @@ jQuery(document).ready(function() {
             error: function (response) {
                 debugger;
                 alert('error'); }
-        });  });
+        });  });*/
       // Liste des motos
-    $("#listemotos").click(function() {
+   /* $("#listemotos").click(function() {
         var id ="listemotos";
         debugger;
         $.ajax({
@@ -217,7 +202,7 @@ jQuery(document).ready(function() {
             error: function (response) {
                 debugger;
                 alert('error'); }
-        });  });
+        });  });*/
 
 
 
@@ -225,15 +210,19 @@ jQuery(document).ready(function() {
 
     var idVehicule1;var catégorie1;var marque1 ;var modele1;var matricule1;
     var energie1;var boite1;var puissance1;
-    var couleur1; var plj1; var plh1; var etat1; var klm1;
+    var couleur1; var plj1; var plh1; var etat1; var klm1;var img ;
 
 
 
-debugger;
+
     $(".modifier").click(function() {
+
         idVehicule1= $(this).closest("tr").find(".id").text();
+
         catégorie1= $(this).closest("tr").find(".catégorie").text();
+
         marque1= $(this).closest("tr").find(".marque").text();
+
         modele1= $(this).closest("tr").find(".modèle").text();
         matricule1= $(this).closest("tr").find(".matricule2").text();
         energie1 = $(this).closest("tr").find(".energie").text();
@@ -244,15 +233,16 @@ debugger;
         plh1= $(this).closest("tr").find(".plh").text();
         klm1= $(this).closest("tr").find(".klm").text();
         etat1= $(this).closest("tr").find("p").text();
-        img= $(this).closest("tr").find(".img").src;
+        debugger;
+        img= $(this).closest("tr").find(".img").attr("src");
 
-        console.log(etat1);
+        console.log(img);
 
     });
     $(".modifier").click(function() {
          console.log(matricule1);
         $("#id1").val(idVehicule1);
-        $("#catégorie").val(catégorie1);
+        $("#catégorie1").val(catégorie1);
         $("#marque1").val(marque1);
         $("#modèle1").val(modele1);
         $("#matricule1").val(matricule1);
@@ -264,56 +254,34 @@ debugger;
         $("#plh1").val(plh1);
         $("#klm1").val(klm1);
         $("#etat1").val(etat1);
-        $("#img").src=img1;
+        $("#img").attr('src', img);
+
 
     });
-    $("#enregistrer").click(function() {
 
-        marque1= $(this).closest("form").find(".marque1").text();
-        modele1= $(this).closest("form").find(".modèle1").text();
-        matricule1= $(this).closest("form").find(".matricule1").text();
-        energie1 = $(this).closest("form").find(".energie1").text();
-        boite1= $(this).closest("form").find(".boite1").text();
-        puissance1= $(this).closest("form").find(".puissance1").text();
-        couleur1= $(this).closest("form").find(".couleur1").text();
-        plj1= $(this).closest("form").find(".plj1").text();
-        plh1= $(this).closest("form").find(".plh1").text();
-        klm1= $(this).closest("form").find(".klm1").text();
-        etat1= $(this).closest("form").find("p").text();
-        $.ajax({
-            type: "pst",
-            data: {"id":idVehicule1,},
-            url: "/backend/listedesvehicules",
-
-            dataType: "html",
-            success: function (result) {
-                debugger;
-
-                $("#ajoutervéhicule").hide();
-                $("#gérerfinlocation").hide();
-
-
-                $("#menu2").show();
-                $("#afficherlistedesvehicules").html(result);
-
-            },
-            error: function (response) {
-                debugger;
-                alert('error'); }
-        });  });
-
+/*
     debugger;
     var cleave = new Cleave(".kélom", {
 
         numericOnly: true
 
     });
+    debugger;
     var cleave = new Cleave('.prixLJ', {
         numericOnly: true
     });
+    debugger;
     var cleave = new Cleave('.prixLH',{
         numericOnly: true
     });
+
+    debugger;
+    var cleave = new Cleave('#capacite',{
+        numericOnly: true
+    });
+
+*/
+
     $("#ajouter").click(function() {
 
         ListeDesDepots("idDepot");
@@ -321,9 +289,13 @@ debugger;
     });
     $(".modifier").click(function() {
 
-        ListeDesDepots("idDepot1");
+
 
     });
+    debugger;
+
+
+    // Depot
     function ListeDesDepots(id) {
 
         $.ajax({
@@ -332,9 +304,9 @@ debugger;
 
             success: function (result) {
                 debugger;
-                 var op ;
+                var op ;
                 $.each(result, function (index, result) {
-                   op= op+"<option value='" +index + "'>" + result.adresse + "</option>";
+                    op= op+"<option value='" +result.idDepot + "'>" + result.adresse + "</option>";
                 });
                 $("#"+id+"").html(op);
             },
@@ -344,6 +316,7 @@ debugger;
             }
         });
     };
+
 
 
 });

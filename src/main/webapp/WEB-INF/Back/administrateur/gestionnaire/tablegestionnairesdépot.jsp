@@ -35,6 +35,7 @@ listGest= (ArrayList<Utilisateur>) request.getAttribute("listGest");
                 <th>Prénom</th>
                 <th class="hidden-XS">Pseudo</th>
                 <th>email</th>
+                <th>adreesse dépot</th>
                 <th>etat</th>
                 <th>Action</th>
             </tr>
@@ -50,6 +51,8 @@ listGest= (ArrayList<Utilisateur>) request.getAttribute("listGest");
                 <td class="hidden-XS"><%out.print(l.getPseudo()
                 ); %></td>
                 <td class="hidden-XS"><%out.print(l.getEmail()
+                ); %></td>
+                <td class="hidden-XS"><%out.print(l.getIdDepot().getAdresse()
                 ); %></td>
                 <td><p class="label <% if (!"bloqué".equals(l.getEtat())) {%> label-success<%
                 } else {%>label-danger <% };%>" ><%out.print(l.getEtat()); %></p>

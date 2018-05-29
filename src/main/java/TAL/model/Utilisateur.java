@@ -13,7 +13,11 @@ public class Utilisateur {
 
     public int  idUtilisateur;
 
-    private int idDepot;
+
+    @ManyToOne
+    @JoinColumn(name = "idDepot")
+    private Depot idDepot;
+
     private String nom ;
     private String prenom;
     private String type ;
@@ -22,11 +26,11 @@ public class Utilisateur {
     private String email;
 
 
-    public int getIdDepot() {
+    public Depot getIdDepot() {
         return idDepot;
     }
 
-    public void setIdDepot(int idDepot) {
+    public void setIdDepot(Depot idDepot) {
         this.idDepot = idDepot;
     }
 

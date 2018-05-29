@@ -11,7 +11,7 @@
     ArrayList<Vehicule> listLoca;
 
 
-    listLoca= (ArrayList<Vehicule>) request.getAttribute("voiture");
+    listLoca= (ArrayList<Vehicule>) request.getAttribute("ListVehiculesDépot");
 
 
 %>
@@ -72,7 +72,7 @@
                         <th>kélométrage</th>
                         <th>etat</th>
 
-                        <th>photo</th>
+                        <th>Dépot</th>
                         <th>action</th>
 
                     </tr>
@@ -100,6 +100,7 @@
                         <td class="etat">
                             <p class=" label <%if (!"réservé".equals(aListLoca.getEtat())){%> label-success<%}else {%>label-danger<%};%>" ><%out.print(aListLoca.getEtat());%></p>
                         </td>
+                        <td class="dépot"><%out.print(aListLoca.getIdDepot().getAdresse()); %></td>
                         <td class="photo">
                             <a class="modifier btn yellow" data-toggle="modal" href="#myM<%out.print(aListLoca.getIdVehicule());%>">Voir </a>
 
@@ -125,42 +126,7 @@
 
                         </td>
 
-                        <td class="action">
 
-                            <button type="reset" class="btn green cancel">
-                                <i class=" icon-external-link"></i>
-                                <a class="modifier btn green" data-toggle="modal" href="#modifiervehicule">Modifier </a>
-                            </button>
-                            <button type="" class="btn red cancel"  >
-                                <i class="icon-ban-circle"></i>
-                                <a class="bloquer btn red" data-toggle="modal" href="#Supprimer<%out.print(aListLoca.getIdVehicule());%>">Supprimer</a>
-                            </button>
-                            <div id="Supprimer<%out.print(aListLoca.getIdVehicule());%>" class="modal fade"
-                                 tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true" style="display: none;" >
-
-                                <form action="/supprimervehicule" method="post">
-                                    <input type="hidden" name="idsupprimer" value="<%out.print(aListLoca.getIdVehicule());%>">
-                                    <div class="modal-dialog" style="padding: 0 !important">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                                <h4 class="modal-title">Confirmation</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h4 class="modal-title">Voulez vous supprimmer ce vehicule</h4>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn green supprimervehicule" >Supprimer</button>
-                                                <button class="btn default" data-dismiss="modal" aria-hidden="true">Close</button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-
-                        </td>
 
                     </tr>
                     <%

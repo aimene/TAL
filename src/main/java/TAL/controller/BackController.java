@@ -34,7 +34,7 @@ public class BackController {
         this.storageService = storageService;
     }
 
-    @RequestMapping(value="/connexion",method= RequestMethod.GET)
+    @RequestMapping(value="/connexionBack",method= RequestMethod.GET)
     public String authentification()
     {
         return"Back/connexion";
@@ -46,13 +46,13 @@ public class BackController {
     {
         HttpSession session =request.getSession();
         Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
-        if (u.equals(null)){
-            return "Back/connexion";
+        if (u==null){
+            return "redirect:/connexionBack";
         }else{
             if (u.getType().equals("agence")){
                 return "Back/espaceGestAgence";
             }else{
-                return "Back/connexion";
+                return "redirect:/connexionBack";
             }
         }
 
@@ -64,13 +64,13 @@ public class BackController {
     {
         HttpSession session =request.getSession();
         Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
-        if (u.equals(null)){
-            return "Back/connexion";
+        if (u==null){
+            return "redirect:/connexionBack";
         }else{
             if (u.getType().equals("depot")){
                 return "Back/espaceGestDépot";
             }else{
-        return "Back/connexion";
+        return "redirect:/connexionBack";
               }
         }
 
@@ -79,26 +79,71 @@ public class BackController {
     @RequestMapping(value="/espaceadmin",method= RequestMethod.GET)
     public String espaceadmin()
     {
-        return"Back/espaceadmin";
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }else{
+
+                return "Back/espaceadmin";
+
+        }
+
     }
 
     @RequestMapping(value="/gérervéhicules",method= RequestMethod.GET)
     public String gérervéhicules()
     {
-        return"Back/administrateur/véhicule/gérervéhicules";
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }else{
+
+           return"Back/administrateur/véhicule/gérervéhicules";
+        }
+
     }
 
+    @RequestMapping(value="/gérerdépot",method= RequestMethod.GET)
+    public String gérerdépot()
+    {
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }else{
+
+
+        return"Back/administrateur/dépot/gérerdépot";}
+    }
 
     @RequestMapping(value="/gérercomptesgestionnaires",method= RequestMethod.GET)
     public String gérercomptesgestionnaires()
     {
-        return"Back/administrateur/gestionnaire/gérercomptesgestionnaires";
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }else{
+
+            return"Back/administrateur/gestionnaire/gérercomptesgestionnaires";
+        }
+
     }
 
     @RequestMapping(value="/gérercompteslocataires",method= RequestMethod.GET)
     public String gérercompteslocataires()
     {
-        return"Back/administrateur/locataire/gérercompteslocataires";
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }else{
+
+            return"Back/administrateur/locataire/gérercompteslocataires";
+        }
+
     }
 
 
@@ -107,74 +152,78 @@ public class BackController {
 
 
 
-    @RequestMapping(value="/seconnecter",method= RequestMethod.POST)
+    @RequestMapping(value="/sedéconnecterBack",method= RequestMethod.GET)
+    public String déconnexion ()
+    {
+        HttpSession session =request.getSession();
+
+        session.invalidate();
+        return  "Back/connexion";
+    }
+
+    @RequestMapping(value="/seconnecterBack",method= RequestMethod.POST)
     public String login (@RequestParam("pseudo") String pseudo, @RequestParam("motdepasse") String motdepasse)
     {
         HttpSession session =request.getSession();
         Utilisateur u =serviceAdministrateur.getUtilisateurByPseudo(pseudo);
-            if (u.equals(null)){
-                request.setAttribute("succes","compteinexistant");
-            }else{
-                if (u.getPseudo().equals(pseudo)&&u.getMotdepasse().equals(motdepasse)){
-                    request.setAttribute("succes","correct");
-                    session.setAttribute( "utilisateur",u);
-                    if (u.getType().equals("depot")){
-                        return "Back/espaceGestDépot";
-                    }else{
-                        if (u.getType().equals("agence")){
-                            return "Back/espaceGestAgence";
-                        }else{
-                            return "Back/espaceadmin";
-                        }
-                    }
+        if (u==null&&u.getEtat().equals("approuvé")){
+            request.setAttribute("succes","compteinexistant");
+            return "redirect:/connexionBack";
+        }else{
+            if (u.getPseudo().equals(pseudo)&&u.getMotdepasse().equals(motdepasse)){
+                request.setAttribute("succes","correct");
+                session.setAttribute( "utilisateur",u);
+                if (u.getType().equals("depot")){
+                    return "Back/espaceGestDépot";
                 }else{
-                    request.setAttribute("succes","incorrect");
-
+                    if (u.getType().equals("agence")){
+                        return "Back/espaceGestAgence";
+                    }else{
+                        return "Back/espaceadmin";
+                    }
                 }
-
+            }else{
+                request.setAttribute("succes","incorrect");
+                return "redirect:/connexionBack";
             }
 
+        }
 
 
-
-        return  "";
     }
 
-    @RequestMapping(value="/backend/ajoutergestionnaire",method= RequestMethod.POST)
-    public String bloquerlocataire (@RequestParam("nom") String  nom,@RequestParam("prenom")
-            String prenom,@RequestParam("pseudo") String pseudo,@RequestParam("motdepasse") String motdepasse
-            ,@RequestParam("type") String type,@RequestParam("email") String email)
+
+    @RequestMapping(value="/ajoutergestionnaire",method= RequestMethod.POST)
+    public String ajoutergestionnaire (@ModelAttribute("utilisateur") Utilisateur u)
     {
-
-        Utilisateur u =new Utilisateur();
-        u.setNom(nom);
-        u.setPrenom(prenom);
-        u.setEmail(email);
-        u.setPseudo(pseudo);
-        u.setMotdepasse(motdepasse);
-        u.setEtat("approuvé");
-        u.setType(type);
-        System.out.println("aaa"+type);
-        serviceAdministrateur.AjouterUtilisateur(u);
-
-
-        if (type.equals("dépot")){
-            ArrayList<Utilisateur> l = serviceAdministrateur.getGestionDepotList();
-            request.setAttribute("listGest",l);
-            return"Back/administrateur/gestionnaire/tablegestionnairesdépot";
-
-        }else{
-            ArrayList<Utilisateur> l = serviceAdministrateur.getGestionAgenceList();
-            request.setAttribute("listGestA",l);
-            return"Back/administrateur/gestionnaire/tablegestionnairesagence";
+        HttpSession session =request.getSession();
+        Utilisateur u1= (Utilisateur) session.getAttribute("utilisateur");
+        if (u1==null){
+            return "redirect:/connexionBack";
         }
+        Utilisateur r =serviceAdministrateur.getUtilisateurByPseudo(u.getPseudo());
+        Utilisateur e = serviceAdministrateur.getUtilisateurByEmail(u.getEmail());
+        if (r == null && e==null){
+            u.setEtat("approuvé");
+            request.setAttribute("ajoutgestionnaire",true);
+            serviceAdministrateur.AjouterUtilisateur(u);
+        }else{
+            request.setAttribute("ajoutgestionnaire",false);
+        }
+
+                return"Back/administrateur/gestionnaire/gérercomptesgestionnaires";
+
 
 
     }
 
     @RequestMapping(value="/backend/listgestionnairesagence",method= RequestMethod.GET)
     public String getGestionnairesAgence (){
-
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
         ArrayList<Utilisateur> l = serviceAdministrateur.getGestionAgenceList();
         request.setAttribute("listGestA",l);
         return"Back/administrateur/gestionnaire/tablegestionnairesagence";
@@ -183,7 +232,11 @@ public class BackController {
     @RequestMapping(value="/backend/listgestionnairesdépot",method= RequestMethod.GET)
     public String getGestionnairesDépot ()
     {
-
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
         ArrayList<Utilisateur> l = serviceAdministrateur.getGestionDepotList();
         request.setAttribute("listGest",l);
         return"Back/administrateur/gestionnaire/tablegestionnairesdépot";
@@ -191,7 +244,12 @@ public class BackController {
 
     @RequestMapping(value="/backend/bloquerGestionnaireAgence",method= RequestMethod.GET)
     public String bloquerGestionnaireAgence (@RequestParam("id") int id)
-    {    System.out.println(id);
+    {
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }System.out.println(id);
         // int id1 = Integer.parseInt(id);
         Utilisateur l = serviceAdministrateur.GetUtilisateurById(id);
         l.setEtat("bloqué");
@@ -208,7 +266,13 @@ public class BackController {
 
     @RequestMapping(value="/backend/débloquerGestionnaireAgence",method= RequestMethod.GET)
     public String débloquerGestionnaireAgence (@RequestParam("id") int id)
-    {    System.out.println(id);
+    {
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
+        System.out.println(id);
         // int id1 = Integer.parseInt(id);
         Utilisateur l = serviceAdministrateur.GetUtilisateurById(id);
         l.setEtat("approuvé");
@@ -222,7 +286,13 @@ public class BackController {
     }
     @RequestMapping(value="/backend/bloquerGestionnaireDépot",method= RequestMethod.GET)
     public String bloquerGestionnaireDépot (@RequestParam("id") int id)
-    {    System.out.println(id);
+    {
+
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }System.out.println(id);
         // int id1 = Integer.parseInt(id);
         Utilisateur l = serviceAdministrateur.GetUtilisateurById(id);
         l.setEtat("bloqué");
@@ -239,7 +309,12 @@ public class BackController {
 
     @RequestMapping(value="/backend/débloquerGestionnaireDépot",method= RequestMethod.GET)
     public String débloquerGestionnaireDépot (@RequestParam("id") int id) {    System.out.println(id);
-        // int id1 = Integer.parseInt(id);
+
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        } // int id1 = Integer.parseInt(id);
         Utilisateur l = serviceAdministrateur.GetUtilisateurById(id);
         l.setEtat("approuvé");
         serviceAdministrateur.AjouterUtilisateur(l);
@@ -255,7 +330,11 @@ public class BackController {
     //
     @RequestMapping(value = "/ajoutervehicule",headers=("content-type=multipart/*"),method =RequestMethod.POST)
     public String ajoutervehicule(@RequestParam("file") MultipartFile file, @ModelAttribute("vehicule") Vehicule vr) {
-
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
         if (!vr.getMatricule().equals("")){
             boolean b =serviceAdministrateur.TestMatricule(vr.getMatricule());
             if (!b){
@@ -265,7 +344,7 @@ public class BackController {
                 list.add(vr);
                 storageService.store(file);
                 serviceAdministrateur.AjouterVéhicule(vr);
-                testCatégorie(vr);
+                request.setAttribute("cattype","aaa");
                 request.setAttribute("success",true);
                 request.setAttribute("v",list);
             }else{
@@ -284,7 +363,7 @@ public class BackController {
 
             vr.setImagepath("imagevehicule/"+file.getOriginalFilename());
             serviceAdministrateur.modifierVehicule(vr);
-            testCatégorie(vr);
+            request.setAttribute("cattype","aaa");
             storageService.store(file);
 
 
@@ -295,26 +374,20 @@ public class BackController {
     @RequestMapping(value = "/supprimervehicule",method =RequestMethod.POST)
     public String supprimervehicule(@RequestParam("idsupprimer") int id) {
 
-           Vehicule v = serviceAdministrateur.GetVehicule(id);
-           testCatégorie(v);
 
-         serviceAdministrateur.SupprimerVehicule(id);
+           Vehicule v = serviceAdministrateur.GetVehicule(id);
+           if (!v.getEtat().equals("libre")){
+               request.setAttribute("supprimerVehicule",false);
+               return "Back/administrateur/véhicule/gérervéhicules";
+           }
+        request.setAttribute("supprimerVehicule",true);
+           request.setAttribute("cattype","aaa");
+           serviceAdministrateur.SupprimerVehicule(id);
 
         return "Back/administrateur/véhicule/gérervéhicules";
     }
 
-    public void testCatégorie(Vehicule v){
-        if (v.getCatégorie().equals("bus")){
-            request.setAttribute("cattype","listebus");
-        }else{
-            if (v.getCatégorie().equals("moto")) {
-                request.setAttribute("cattype", "listemotos");
-            }else{
-                request.setAttribute("cattype", "listevoitures");
-            }
 
-        }
-    }
 
 
 
@@ -361,14 +434,22 @@ public class BackController {
     @RequestMapping(value="/backend/listlocataires",method= RequestMethod.GET)
     public String getLocataires ()
     {
-
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
         request.setAttribute("listLoca",serviceAdministrateur.getAllLocataire());
         return"Back/administrateur/locataire/table";
     }
     @RequestMapping(value="/backend/listlocatairesBloqué",method= RequestMethod.GET)
     public String getLocataireBloqué ()
     {
-
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
         request.setAttribute("listLoca",serviceAdministrateur.getLocatairebloqué());
 
 
@@ -377,7 +458,12 @@ public class BackController {
     @RequestMapping(value="/backend/bloquerlocataire",method= RequestMethod.GET)
     public String bloquerlocataire (@RequestParam("id") int id)
     {    System.out.println(id);
-        // int id1 = Integer.parseInt(id);
+
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }// int id1 = Integer.parseInt(id);
         Locataire l = serviceAdministrateur.getLocataire(id);
         l.setEtat("bloqué");
         serviceAdministrateur.AjouterLocataire(l);
@@ -390,7 +476,12 @@ public class BackController {
     @RequestMapping(value="/backend/débloquerlocataire",method= RequestMethod.GET)
     public String débloquerlocataire (@RequestParam("id") int id)
     {    System.out.println(id);
-        // int id1 = Integer.parseInt(id);
+
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        } // int id1 = Integer.parseInt(id);
         Locataire l = serviceAdministrateur.getLocataire(id);
         l.setEtat("approuvé");
         serviceAdministrateur.AjouterLocataire(l);
@@ -405,16 +496,87 @@ public class BackController {
     //Depot
 
 
-    @RequestMapping(value="/ListeDesDepots")
+    @RequestMapping(value="/ListeDesDepots",method = RequestMethod.GET)
     public String ListeDesDepots()
     {
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
         ArrayList<Depot> d =serviceAdministrateur.ListeDesDepot();
         String options="" ;
+        char c = '"';
         for (Depot d1 : d){
-            options =options+"<option value='" + d1.getIdDepot() +"'>" + d1.getAdresse() + "</option>";
+            options =options +"<option value="+c+d1.getIdDepot()+c +">" + d1.getAdresse() + "</option>";
         }
         return options;
     }
+
+    @RequestMapping(value = "/ajouterdepot" ,method =RequestMethod.POST)
+    public String ajouterdepot( @ModelAttribute("depot") Depot depot) {
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
+        serviceAdministrateur.ajouterDépot(depot);
+        request.setAttribute("dépotslist",serviceAdministrateur.GetDépotsList());
+
+
+        return "Back/administrateur/dépot/gérerdépot";
+    }
+    @RequestMapping(value = "/supprimerdepot" ,method =RequestMethod.POST)
+    public String supprimerdepot( @RequestParam("idDepot") int idDepot) {
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
+        Depot depot = serviceAdministrateur.getDepotById(idDepot);
+        if(serviceAdministrateur.ListeDesVehiculesDepot(idDepot).size()>0){
+            request.setAttribute("supprimerDepot",false);
+        }else{
+            request.setAttribute("supprimerDepot",true);
+            serviceAdministrateur.supprimerDepot(depot);
+        }
+        request.setAttribute("dépotslist",serviceAdministrateur.GetDépotsList());
+
+
+        return "Back/administrateur/dépot/gérerdépot";
+    }
+
+    @RequestMapping(value = "/listdepot" ,method =RequestMethod.GET)
+    public String listdepot( ) {
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
+
+        request.setAttribute("dépotslist",serviceAdministrateur.GetDépotsList());
+
+
+        return "Back/administrateur/dépot/gérerdépot";
+    }
+
+
+    @RequestMapping(value = "/listeVehiculesDépot" ,method =RequestMethod.GET)
+    public String ListVehiculesDépot( int id) {
+        HttpSession session =request.getSession();
+        Utilisateur u= (Utilisateur) session.getAttribute("utilisateur");
+        if (u==null){
+            return "redirect:/connexionBack";
+        }
+
+        request.setAttribute("ListVehiculesDépot",serviceAdministrateur.ListeDesVehiculesDepot(id));
+
+
+        return "Back/administrateur/dépot/listeVehiculesDépot";
+    }
+
+
+
 
 
 }

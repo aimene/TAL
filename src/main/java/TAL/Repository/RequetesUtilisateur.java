@@ -18,7 +18,15 @@ public interface RequetesUtilisateur extends JpaRepository<Utilisateur, Integer>
     ArrayList<Utilisateur> gestionnairedépot();
 
 
-    @Query(value = "Select * from utilisateur u where (u.pseudo= :pseudo )", nativeQuery = true)
+    @Query(value = "Select * from utilisateur u where u.pseudo= :pseudo ", nativeQuery = true)
     Utilisateur getUtilisateurByPseudo( @Param("pseudo") String pseudo);
+
+    @Query(value = "Select * from utilisateur u where u.email= :email ", nativeQuery = true)
+    Utilisateur getUtilisateurByEmail( @Param("email") String email);
+
+
+    @Query(value = "Select * from utilisateur u ,Depot d where u.id_depot = d.id_depot ", nativeQuery = true)
+    Utilisateur getUtilisateurDepot();
+
 
 }

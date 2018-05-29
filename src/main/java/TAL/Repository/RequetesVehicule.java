@@ -22,4 +22,6 @@ public interface RequetesVehicule extends JpaRepository<Vehicule, Integer> {
     @Query(value="Select * from Vehicule where matricule=:m" , nativeQuery=true)
     Vehicule matriculeexist(@Param("m") String matricule);
 
+    @Query(value="Select  * from  vehicule where id_depot=:idDepot" , nativeQuery=true)
+    ArrayList<Vehicule> ListesVehiculesDepots(@Param("idDepot") int id);
 }

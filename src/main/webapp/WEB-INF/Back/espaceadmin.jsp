@@ -45,90 +45,8 @@
 <!-- BEGIN BODY -->
 <body class="page-header-fixed page-full-width">
 <!-- BEGIN HEADER -->
-<div class="header navbar navbar-inverse navbar-fixed-top">
-    <!-- BEGIN TOP NAVIGATION BAR -->
-    <div class="header-inner">
-        <!-- BEGIN LOGO -->
-        <a class="navbar-brand" href="/espaceadmin"  style="padding: 7px;"  >
-            <img src="assets/image/talocationlogo.png" alt="logo" style="" />
-        </a>
-        <!-- END LOGO -->
-        <!-- BEGIN HORIZANTAL MENU -->
-        <div class="hor-menu hidden-sm hidden-xs">
-            <ul class="nav navbar-nav">
-                <li >
-                    <a id="réservations" >
+<jsp:include page="navbar.jsp"></jsp:include>
 
-                        Réservations
-                    </a>
-                </li>
-                <li  >
-                    <a id="locations">
-
-                        Locations
-
-                    </a>
-
-                </li>
-                <li c>
-                    <a id="véhicules" href="/gérervéhicules">Gérer véhicules</a>
-
-                </li>
-
-                <li>
-                    <a id="locataires" href="/gérercompteslocataires" >Gérer comptes locataires
-
-                    </a>
-
-                </li>
-                <li  >
-                    <a  id="gestionnaires" href="/gérercomptesgestionnaires">Gérer comptes Gestionnaires
-
-                    </a>
-
-                </li>
-
-            </ul>
-        </div>
-        <!-- END HORIZANTAL MENU -->
-        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <img src="assets/img/menu-toggler.png" alt="" />
-        </a>
-        <!-- END RESPONSIVE MENU TOGGLER -->
-        <!-- BEGIN TOP NAVIGATION MENU -->
-        <ul class="nav navbar-nav pull-right">
-            <!-- BEGIN NOTIFICATION DROPDOWN -->
-
-            <!-- END NOTIFICATION DROPDOWN -->
-            <!-- BEGIN INBOX DROPDOWN -->
-            <!-- BEGIN TODO DROPDOWN -->
-
-            <!-- END TODO DROPDOWN -->
-            <!-- BEGIN USER LOGIN DROPDOWN -->
-            <li class="dropdown user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                    <img alt="" src="assets/img/avatar1_small.jpg"/>
-                    <span class="username">Bob Nilson</span>
-                    <i class="icon-angle-down"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="extra_profile.html"><i class="icon-user"></i> My Profile</a></li>
-
-                    <li><a href="inbox.html"><i class="icon-envelope"></i> My Inbox <span class="badge badge-danger">3</span></a></li>
-                    <li><a href="#"><i class="icon-tasks"></i> My Tasks <span class="badge badge-success">7</span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="javascript:;" id="trigger_fullscreen"><i class="icon-move"></i> Full Screen</a></li>
-                    <li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a></li>
-                    <li><a href="login.html"><i class="icon-key"></i> Se déconnecter</a></li>
-                </ul>
-            </li>
-            <!-- END USER LOGIN DROPDOWN -->
-        </ul>
-        <!-- END TOP NAVIGATION MENU -->
-    </div>
-    <!-- END TOP NAVIGATION BAR -->
-</div>
 <!-- END HEADER -->
 <div class="clearfix"></div>
 <!-- BEGIN CONTAINER -->
@@ -247,8 +165,7 @@
 <script src="assets/plugins/excanvas.min.js"></script>
 <script src="assets/plugins/respond.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
+
 
 
 

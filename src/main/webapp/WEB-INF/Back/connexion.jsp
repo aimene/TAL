@@ -117,13 +117,13 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                             <div class="row">
                                 <div class="col-md-12">
 
-                                    <form action="#">
+                                    <form action="/seconnecterBack" method="post">
 
                                         <div class="form-group">
                                             <label class="control-label">Pseudo </label>
                                             <div class="input-group">
 
-                                                <input type="text" class="form-control" placeholder="Email " name="pseudo" required="required">
+                                                <input type="text" class="form-control" placeholder="pseudo " name="pseudo" required="required">
                                                 <span class="input-group-addon"><i class="icon-user"></i></span>
                                             </div>
                                         </div>
@@ -136,17 +136,17 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                                             </div>
                                         </div>
 
+                                        <div class="modal-footer">
 
+                                            <button type="submit" class="btn green col-md-12" style="border-radius: 20px !important;">Se connecter</button>
+                                        </div>
                                     </form>
                                 </div>
 
                             </div>
                         </div>
 
-                        <div class="modal-footer">
 
-                            <button type="button" class="btn green col-md-12" style="border-radius: 20px !important;">Se connecter</button>
-                        </div>
                     </div>
 
 

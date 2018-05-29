@@ -22,4 +22,12 @@ public class RestController {
     {
         return backService.ListeDesDepot();
     }
+
+    @RequestMapping(value="/DépotRestCapacité")
+    public ArrayList<Depot> ListeDesDepotsancapacité()
+    {
+        return backService.getDépotRestCapacité();
+    }
+
+
 }

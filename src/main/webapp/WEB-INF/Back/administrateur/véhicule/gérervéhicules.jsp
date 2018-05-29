@@ -53,96 +53,14 @@
 <!-- BEGIN BODY -->
 <body class="page-header-fixed page-full-width">
 <!-- BEGIN HEADER -->
-<div class="header navbar navbar-inverse navbar-fixed-top">
-    <!-- BEGIN TOP NAVIGATION BAR -->
-    <div class="header-inner">
-        <!-- BEGIN LOGO -->
-        <a class="navbar-brand" href="/espaceadmin"  style="padding: 7px;"  >
-            <img src="assets/image/talocationlogo.png" alt="logo" style="" />
-        </a>
-        <!-- END LOGO -->
-        <!-- BEGIN HORIZANTAL MENU -->
-        <div class="hor-menu hidden-sm hidden-xs">
-        <ul class="nav navbar-nav">
-            <li >
-                <a id="réservations" >
+<jsp:include page="../../navbar.jsp"></jsp:include>
 
-                    Réservations
-                </a>
-            </li>
-            <li  >
-                <a id="locations">
-
-                    Locations
-
-                </a>
-
-            </li>
-            <li class="active">
-                <a id="véhicules" href="/gérervéhicules">Gérer véhicules</a>
-                <span class="selected"></span>
-            </li>
-
-            <li>
-                <a id="locataires" href="/gérercompteslocataires" >Gérer comptes locataires
-
-                </a>
-
-            </li>
-            <li  >
-                <a  id="gestionnaires" href="/gérercomptesgestionnaires">Gérer comptes Gestionnaires
-
-                </a>
-
-            </li>
-
-        </ul>
-    </div>
-        <!-- END HORIZANTAL MENU -->
-        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <img src="assets/img/menu-toggler.png" alt="" />
-        </a>
-        <!-- END RESPONSIVE MENU TOGGLER -->
-        <!-- BEGIN TOP NAVIGATION MENU -->
-        <ul class="nav navbar-nav pull-right">
-            <!-- BEGIN NOTIFICATION DROPDOWN -->
-
-            <!-- END NOTIFICATION DROPDOWN -->
-            <!-- BEGIN INBOX DROPDOWN -->
-            <!-- BEGIN TODO DROPDOWN -->
-
-            <!-- END TODO DROPDOWN -->
-            <!-- BEGIN USER LOGIN DROPDOWN -->
-            <li class="dropdown user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                    <img alt="" src="assets/img/avatar1_small.jpg"/>
-                    <span class="username">Bob Nilson</span>
-                    <i class="icon-angle-down"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="extra_profile.html"><i class="icon-user"></i> My Profile</a></li>
-
-                    <li><a href="inbox.html"><i class="icon-envelope"></i> My Inbox <span class="badge badge-danger">3</span></a></li>
-                    <li><a href="#"><i class="icon-tasks"></i> My Tasks <span class="badge badge-success">7</span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="javascript:;" id="trigger_fullscreen"><i class="icon-move"></i> Full Screen</a></li>
-                    <li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a></li>
-                    <li><a href="login.html"><i class="icon-key"></i> Se déconnecter</a></li>
-                </ul>
-            </li>
-            <!-- END USER LOGIN DROPDOWN -->
-        </ul>
-        <!-- END TOP NAVIGATION MENU -->
-    </div>
-    <!-- END TOP NAVIGATION BAR -->
-</div>
 <!-- END HEADER -->
 <div class="clearfix"></div>
 <!-- BEGIN CONTAINER -->
 <div class="page-container" >
     <% if (request.getAttribute("cattype")!=null){%>
-    <input type="hidden" id="loadList" value="<%out.print(request.getAttribute("cattype"));%>">
+    <input type="hidden" id="loadList" value="<%out.print(request.getAttribute("cattype")); %>">
     <%};%>
     <!-- BEGIN EMPTY PAGE SIDEBAR -->
     <div class="row col-md-12" style="margin: 0;padding: 0;">
@@ -169,34 +87,11 @@
 
         <!-- END SIDEBAR MENU -->
     </div>
-    <div class="row col-md-12" id="menu2">
+    <div class="row col-md-12" >
         <!-- BEGIN SIDEBAR MENU -->
 
 
-        <ul class="page-sidebar-menu ">
-            <li class="start col-md-4 btn " >
-                <a id="listevoitures">
-                    <i class=" icon-list-ul"></i>
-                    <span class="title"  >Liste des voitures</span>
-                </a>
-            </li>
-            <li class="start col-md-4 btn" >
-                <a id="listebus">
-                    <i class=" icon-list-ul"></i>
-                    <span class="title">Liste des bus</span>
-                </a>
-            </li>
 
-            <li class="start col-md-4 btn">
-                <a id="listemotos">
-                    <i class=" icon-list-ul"></i>
-                    <span class="title" >Liste des motos</span>
-                </a>
-            </li>
-
-
-
-        </ul>
         <!-- END SIDEBAR MENU -->
     </div>
 
@@ -208,6 +103,22 @@
 
 
             <div class="col-md-12">
+                <div class="message">
+                    <% if( request.getAttribute("supprimerVehicule")!=null ){%>
+                    <% if( (boolean)request.getAttribute("supprimerVehicule") ){%>
+
+                    <div class="note note-success">
+                        <h4 class="block">Ce vehicule a été supprimé</h4>
+
+                    </div>
+                    <% }else{%>
+                    <div class="note note-danger">
+                        <h4 class="block">Vous pouvez pas supprimer ce vehicule car il n'est pas libre</h4>
+
+                    </div>
+                    <% }};%>
+                </div>
+
 
 
                 <div class="success">
@@ -316,7 +227,7 @@
                                 <div class="form-group  ">
                                     <label class="label label-md label-warning">Catégorie</label>
 
-                                    <input id="catégorie" class="form-control input" name="catégorie">
+                                    <input id="catégorie" class="form-control input" name="catégorie" placeholder="catégorie" required >
                                 </div>
                                 <div class="form-group">
                                     <div class="input-icon">
@@ -403,8 +314,7 @@
                                 </div>
                                 <div class="form-group  ">
                                     <label class="label label-md label-warning">Dépot</label>
-                                    <select  id="idDepot" class="form-control input" name="idDepot" >
-
+                                    <select  id="idDepotV" class="form-control input" name="idDepot" >
 
 
                                     </select>
