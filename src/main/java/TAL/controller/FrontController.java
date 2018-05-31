@@ -276,17 +276,13 @@ public class FrontController implements ErrorController {
 
 
    @RequestMapping(value="/rechercher",method= RequestMethod.POST)
-    public String rechercher(@RequestParam("catégorie") String catégorie, @RequestParam("modèle") String modèle,
+    public String rechercherVehicule(@RequestParam("catégorie") String catégorie, @RequestParam("modèle") String modèle,
                              @RequestParam("marque") String marque, @RequestParam("boite") String boite , @RequestParam("energie") String energie,
                              @RequestParam("range_2") int prixmax, @RequestParam("dateD") String dateD,@RequestParam("dateDH") String dateDH, @RequestParam("dateR") String dateR,
                              @RequestParam("heureD") String heureD, @RequestParam("type") String type, @RequestParam("heureR") String heureR
                              ) throws ParseException {
 
        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-
-
-
-
 
        java.sql.Date  dateDDD ,  dateRRR,  dateDDDD;
 
@@ -307,14 +303,37 @@ public class FrontController implements ErrorController {
              vehicules= frontService.rechercheParHeure(catégorie,modèle,marque,boite,energie,dateDDDD,heureD,heureR,prixmax);
         }
 
-
-
-
        location.setType(type);
 
-       HttpSession session =request.getSession();
+        HttpSession session =request.getSession();
         session.setAttribute("location" , location);
         request.setAttribute("vehicules" , vehicules);
+
+
+
+
+        return "Front/réserver";
+
+
+    };
+    @RequestMapping(value="/réserver",method= RequestMethod.POST)
+    public String réserverVéhicule(@RequestParam("idVehicule") int idVehicule) throws ParseException {
+
+        HttpSession session =request.getSession();
+        Vehicule vehicule = frontService.GetVehicule(idVehicule);
+        Location location = null;
+        Locataire locataire =(Locataire)session.getAttribute("locataire");
+        if(locataire!=null){
+            location = (Location)session.getAttribute("location");
+
+
+        }
+
+        Vehicule vehicules = null ;
+
+
+
+
 
 
 

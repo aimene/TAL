@@ -98,7 +98,10 @@ public class FrontService {
         return requetesVehicule.rechercherParHeure(catégorie,modèle,marque,boite,energie,dateD,heureD,heureR,prixmax);
     }
 
+    public Vehicule GetVehicule(int id){
+        return  requetesVehicule.getOne(id);
 
+    }
 
 
 

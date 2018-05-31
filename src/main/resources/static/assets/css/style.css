@@ -57,24 +57,9 @@ properly apply the media queries in Bootstrap's CSS. To address this,
 you can optionally include the following CSS and JavaScript to work around this problem until Microsoft issues a fix.
 */
 @-webkit-viewport { 
-  width: device-width; 
+/* width: device-width; */
 }
 
-@-moz-viewport { 
-  width: device-width; 
-}
-
-@-ms-viewport { 
-  width: device-width; 
-}
-
-@-o-viewport { 
-  width: device-width; 
-}
-
-@viewport { 
-  width: device-width; 
-}
 
 /* Internet Explorer 10 doesn't differentiate device width from viewport width, 
 and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied */
@@ -1064,7 +1049,7 @@ Page breadcrumb
 } 
 
 .page-content .page-breadcrumb.breadcrumb .dashboard-date-range > .icon-calendar {
-  text-transform: normal;
+
   color: #fff;
   margin-top: 0px;
   font-size: 14px;
@@ -1082,6 +1067,7 @@ Footer
 .footer {
   padding: 8px 20px 5px 20px; 
   font-size: 12px;
+
 }
 
 .footer:after,
@@ -1298,7 +1284,7 @@ Portlets
 .portlet.yellow > .portlet-title > .caption, .portlet-title.yellow > .caption,
 .portlet.red > .portlet-title > .caption, .portlet-title.red > .caption,
 .portlet.purple > .portlet-title > .caption, .portlet-title.purple > .caption,
-.portlet.grey > .portlet-title > .caption, .portlet-title.dark-grey > .caption, {
+.portlet.grey > .portlet-title > .caption, .portlet-title.dark-grey > .caption {
   color: #fff;
 }
 
@@ -2673,7 +2659,6 @@ Custom portlet tabs
 }
 
 .portlet-tabs > .nav-tabs > li.active > a {
-  margin-bottom: 0px;
   border-bottom: 0;
   margin-left: 0px;
   margin-right: 0px;
@@ -2691,7 +2676,6 @@ Custom portlet tabs
   margin-right: 0;
   border-left: 0;    
   border-right: 0;
-  background-color: none !important;
   border-top-color:transparent;
   background-color: #fff;
 }  
@@ -3275,7 +3259,9 @@ Horezantal Menu(new in v1.2)
 
 .header .hor-menu ul.nav li a {
   font-size: 14px;
-  padding: 11px 18px; 
+  padding: 11px 18px;
+  color: black !important;
+  font-weight: bold;
 }
 
 .header .hor-menu ul.nav li {
@@ -3304,7 +3290,8 @@ Horezantal Menu(new in v1.2)
 
 .header .hor-menu ul.nav li a:hover,
 .header .hor-menu ul.nav li a:focus {
-    background: #2d2d2d;
+    background: whitesmoke;
+
 }
 
 /*drop-down*/
@@ -3775,6 +3762,7 @@ Forms
 input.placeholder,
 textarea.placeholder {
   color: #aaa !important;
+  font-size: 1.3em;
 }
 
 .help-block {
@@ -4115,7 +4103,6 @@ Responsive Flip Scroll Tables
     overflow-x: auto; 
     white-space: nowrap;     
   }
-  .flip-scroll thead tr { display: block; border: !important;  }
   .flip-scroll th { display: block; text-align: right; }
   .flip-scroll tbody tr { display: inline-block; vertical-align: top; margin-left: -5px; }
   .flip-scroll td { display: block; min-height: 1.25em; text-align: left; border-top: 0 !important; border-left: 0 !important; border-right: 0 !important}

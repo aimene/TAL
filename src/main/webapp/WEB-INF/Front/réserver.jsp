@@ -99,6 +99,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             font-size: 2.5em;
             font-weight: bolder; ;
         }
+        .td{
+            color: black;
+            font-size: 1.2em;
+            font-weight: bolder;
+        }
         .thumbnail{
 
             border-radius: 20px !important;
@@ -121,9 +126,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
         }
         .caption{
-            height: 200px;
+            height: 130px;
             overflow-y:scroll ;
         }
+    #card-affichage{
+       min-height:500px !important;
+        height: 500px !important;
+        overflow-y:scroll ;
+        background-color: whitesmoke !important;
+    }
     .caption::-webkit-scrollbar-track
     {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -144,8 +155,31 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color: #555;
     }
+    #card-affichage::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: inherit !important;
+    }
+
+    #card-affichage::-webkit-scrollbar
+    {
+        border-radius: 10px;
+        width: 7px;
+        background-color: #F5F5F5;
+    }
+
+    #card-affichage::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
         .reserver{
             background-color: #d84a38 !important;
+            border-radius: 20px !important;
+        }
+        .infos{
             border-radius: 20px !important;
         }
         #affichage{
@@ -158,8 +192,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         .form-control {
             background-color: inherit !important;
             color: #3f3f3f !important;
+            border-color: black !important;
+            border-radius: 30px !important;
+
 
         }
+
 
     .irs-grid-text {
         color: black !important;
@@ -192,11 +230,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- BEGIN BODY -->
 <body class="page-header-fixed page-full-width" >
 <!-- BEGIN HEADER -->
-<div class="header navbar navbar-inverse navbar-fixed-top ">
-    <!-- BEGIN TOP NAVIGATION BAR -->
-    <jsp:include page="navbar.jsp"></jsp:include>
-    <!-- END TOP NAVIGATION BAR -->
-</div>
+<jsp:include page="navbar.jsp"></jsp:include>
 <!-- END HEADER -->
 <div class="clearfix"></div>
 <!-- BEGIN CONTAINER -->
@@ -208,7 +242,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     </div>
     <!-- END EMPTY PAGE SIDEBAR -->
     <!-- BEGIN PAGE -->
-       <div class="page-content" style="background-color: whitesmoke !important">
+       <div class="page-content" style="width:100%;background-color: whitesmoke !important">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
         <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -242,7 +276,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
                         <div class="form-group col-md-2  " >
                             <label style="">Type de réservation</label>
-                            <select class="form-control btn red    "  id="typeréservation" name="type">
+                            <select class="form-control     "  id="typeréservation" name="type">
                                 <option class="type" value="parjours" >Par jours</option>
                                 <option class="type" value="parheures" >Par heures</option>
                             </select>
@@ -296,15 +330,13 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
                         <div id="parjour" class="row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-sm-6" style="padding-right: 0px;">
                                 <label class=" ">Date Début/fin</label>
 
-                                <div class="input-group  date-picker input-daterange  "  data-date="10/11/2012" data-date-format="dd-mm-yyyy">
-                                    <span class="input-group-addon">de</span>
-                                    <input id="dateD" type="text" class="form-control  " name="dateD" placeholder="yyyy-mm-dd" required autocomplete="off" >
+                                <div style="padding-left: 20px; padding-right: 0;" class="input-group  date-picker input-daterange row col-sm-12 "  data-date="10/11/2012" data-date-format="dd-mm-yyyy">
+                                    <input style="width: 50%;" id="dateD" type="text" class="form-control col-sm-6 " name="dateD" placeholder="yyyy-mm-dd" required autocomplete="off" >
 
-                                    <span class="input-group-addon">à</span>
-                                    <input id="dateR" type="text" class="form-control " name="dateR" placeholder="yyyy-mm-dd"  required autocomplete="off">
+                                    <input  style="width: 50%;" id="dateR" type="text" class="form-control col-sm-6" name="dateR" placeholder="yyyy-mm-dd"  required autocomplete="off">
 
 
                                 </div>
@@ -352,7 +384,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                     <div class="form-group col-md-6">
                         <label class=" control-label "> Prix max</label>
                         <div class=" col-md-12" >
-                            <input id="range_2" type="text" name="range_2" value="100;10000" data-type="" data-step="500" data-postfix="da" data-from="3000" data-to="90000" data-hasgrid="true"  />
+                            <input id="range_2" type="text" name="range_2" value="150;10000" data-type="" data-step="500" data-postfix="da" data-from="3000" data-to="90000" data-hasgrid="true"  />
                         </div>
                     </div>
                     <div class="col-sm-offset-5"></div>
@@ -373,7 +405,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             </div>
         </div>
 
-        <div class="container">
+        <div class="page-content" id="card-affichage">
 
 
 
@@ -385,10 +417,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
                 if (vehicules == null){%>
                 <div class="note note-danger">
-                    <h4 class="block">Aucun vehicules disponibles</h4>
-                    <p>
+                    <h4 class="block"><%= request.getAttribute("fail") %></h4>
 
-                    </p>
                 </div>
 
              <%   }else{
@@ -397,24 +427,136 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
                 %>
                 <div class="col-md-3" >
-                    <div class="thumbnail" style="">
-                        <img src="<% out.print(v.getImagepath());%>" alt="" class="img-responsive">
-                        <div class="caption">
-                            <h4 class="pull-right" class="prix">Prix location par jour<% out.print(v.getPlj());%></h4>
-                            <h4 class="pull-right" class="prix">Prix location par jour<% out.print(v.getPlj());%></h4>
-                            <h4 > Catégorie <% out.print(v.getCatégorie());%></h4>
-                            <p> Marque :<% out.print(v.getMarque());%></p>
-                            <p> Modèle:<% out.print(v.getModèle());%></p>
-                            <p> Boite:<% out.print(v.getBoite());%></p>
-                            <p> Couleur :<%= v.getCouleur() %></p>
-                        </div>
+                    <form action="/réserver" method="post">
+                        <div class="thumbnail" style=""><span class="badge badge-roundless badge-important" style="
+                        margin-left:  30px;
+                        margin-top: 5px;
+                        border-radius: 17px !important;
+                         ">A louer</span>
+                            <span class="badge badge-roundless badge-success" style="
+                                margin-left: 95px;
+                                margin-top: 5px;
+                                border-radius: 17px !important;
+                            ">Disponible</span>
+                            <img src="<% out.print(v.getImagepath());%>" alt="" class="img-responsive">
+                            <div class="caption">
+                                <div><p style="color: black; font-weight: bold;font-size: 1.2em">Prix par jour : <span class="pull-right">     <span style="color: red; font-weight: bold"><%= v.getPlj()%> </span> DZD </span></div>
+                                <div><p style="color: black; font-weight: bold;font-size: 1.2em">Prix par heure : <span class="pull-right">   <span style="color: red; font-weight: bold"><%= v.getPlh()%> </span> DZD</span></p></div>
+                                <table class="table table-bordered ">
+                                    <tbody>
+                                    <tr>
+                                        <td class="td">Catégorie</td>
+                                        <td>
+                                            <div  >
+                                                <%= v.getCatégorie()%>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td">Marque</td>
+                                        <td>
+                                            <div  >
+                                                <%= v.getMarque()%>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td"   >Modèle</td>
+                                        <td>
+                                            <div  >
+                                                <%= v.getModèle()%>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody></table>
 
-                        <div class="space-ten"></div>
-                        <div class="btn-ground text-center">
+                                <input type="hidden" name="idVehicule" value="<%= v.getIdVehicule()%>">
+                            </div>
 
-                            <button type="button" class="btn btn green reserver" data-target="#full-width" data-toggle="modal"><i class="fa fa-search"></i> Réserver</button>
+                            <div class="space-ten"></div>
+                            <div class="btn-ground text-center">
+                                <button type="button" class="btn default infos" data-target="#full-width<%= v.getIdVehicule()%>" data-toggle="modal"><i class="fa fa-search"></i>Infos</button>
+                                <button type="submit" class="btn  red reserver" ><i class="fa fa-search"></i> Réserver</button>
+                            </div>
+                            <div class="space-ten"></div>
                         </div>
-                        <div class="space-ten"></div>
+                    </form>
+
+                    <div id="full-width<%= v.getIdVehicule()%>" class="modal container fade" tabindex="-1">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">Détails</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row left">
+                              <div class="title"></div>
+                              <div class=" col-sm-6 image ">
+                                  <img src="<% out.print(v.getImagepath());%>" alt="" class="img-responsive col-sm-6"  style="width: 500px;height: 300px;">
+                              </div>
+                              <div class="caption" style="height: 300px">
+                                  <table class="table table-bordered ">
+                                      <tbody>
+                                      <tr>
+                                          <td class="td">Catégorie</td>
+                                          <td>
+                                              <div  >
+                                                  <%= v.getCatégorie()%>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td class="td">Marque</td>
+                                          <td>
+                                              <div  >
+                                                  <%= v.getMarque()%>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td class="td"   >Modèle</td>
+                                          <td>
+                                              <div  >
+                                                  <%= v.getModèle()%>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td class="td"   >Couleur</td>
+                                          <td>
+                                              <div  >
+                                                  <%= v.getCouleur()%>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td class="td"   >Boite</td>
+                                          <td>
+                                              <div  >
+                                                  <%= v.getBoite()%>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td class="td"   >Energie</td>
+                                          <td>
+                                              <div  >
+                                                  <%= v.getEnergie()%>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      </tbody></table>
+
+                                  <input type="hidden" name="idVehicule" value="<%= v.getIdVehicule()%>">
+                              </div>
+
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                            <button type="submit" class="btn  red reserver" ><i class="fa fa-search"></i> Réserver</button>
+
+                        </div>
                     </div>
                 </div>
                 <% };};};%>
@@ -424,20 +566,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
         </div>
-        <div id="full-width" class="modal container fade" tabindex="-1">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Full Width</h4>
-            </div>
-            <div class="modal-body">
-                <p>This modal will resize itself to the same dimensions as the container class.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin ipsum ac ante fermentum suscipit. In ac augue non purus accumsan lobortis id sed nibh. Nunc egestas hendrerit ipsum, et porttitor augue volutpat non. Aliquam erat volutpat. Vestibulum scelerisque lobortis pulvinar. Aenean hendrerit risus neque, eget tincidunt leo. Vestibulum est tortor, commodo nec cursus nec, vestibulum vel nibh. Morbi elit magna, ornare placerat euismod semper, dignissim vel odio. Phasellus elementum quam eu ipsum euismod pretium.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-                <button type="button" class="btn blue">Save changes</button>
-            </div>
-        </div>
+
 
 
 
@@ -449,18 +578,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     </div>
 
 </div>
+
+<jsp:include page="footer.jsp"></jsp:include>
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
-<div class="footer" style="margin-left: 40%" >
-    <div class="footer-inner " >
-        2018 &copy; TALocation
-    </div>
-    <div class="footer-tools">
-         <span class="go-top">
-         <i class="icon-angle-up"></i>
-         </span>
-    </div>
-</div>
+
 <!-- END FOOTER -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
@@ -481,6 +603,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <script src="assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
 <!-- END CORE PLUGINS -->
+
 
 <!-- END CORE PLUGINS -->
 
@@ -522,6 +645,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <script>
     jQuery(document).ready(function() {
         App.init();
+
+
         UIIonSliders.init();
         FormComponents.init();
 

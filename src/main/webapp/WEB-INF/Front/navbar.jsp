@@ -15,6 +15,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
+<div class="header navbar navbar-inverse navbar-fixed-top " style="    background: radial-gradient(ellipse at center, rgba(181,189,200,1) 41%,rgba(130,140,149,1) 85%, rgba(130,140,149,1) 85%,rgba(130,140,149,1) 99%,rgba(130,140,149,1) 99%,rgba(181,189,200,1) 100%,rgba(181,189,200,1) 100%) !important;">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+
+    <!-- END TOP NAVIGATION BAR -->
+
 <div class="header-inner container">
     <!-- BEGIN LOGO -->
     <a class="navbar-brand" href="index.html"  style="padding: 7px;"  >
@@ -115,4 +120,5 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     </ul>
     <% };%>
 
+</div>
 </div>
