@@ -1,8 +1,9 @@
 package TAL.controller;
 
-import TAL.Repository.RequetesLocataire;
 import TAL.model.Feedback;
 import TAL.model.Locataire;
+import TAL.model.Location;
+import TAL.model.Vehicule;
 import TAL.service.FrontService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Map;
 
 @Controller
 public class FrontController implements ErrorController {
@@ -23,6 +26,8 @@ public class FrontController implements ErrorController {
     FrontService frontService;
     @Autowired
     private HttpServletRequest request;
+
+
 
 
     @RequestMapping(value="/error",method= RequestMethod.GET)
@@ -38,7 +43,7 @@ public class FrontController implements ErrorController {
     @RequestMapping(value="/index.html",method= RequestMethod.GET)
     public String index ()
     {
-        return"Front/index";
+        return "Front/index";
     }
 
     @RequestMapping(value="/apropos.html",method= RequestMethod.GET)
@@ -66,7 +71,7 @@ public class FrontController implements ErrorController {
     @RequestMapping(value="/activation.html",method= RequestMethod.GET)
     public String activer ()
     {
-        return"Front/activation";
+        return "/WEB-INF/Front/activation.html";
     }
 
     @RequestMapping(value="/récupération.html",method= RequestMethod.GET)
@@ -91,7 +96,7 @@ public class FrontController implements ErrorController {
     {
         HttpSession session =request.getSession();
         if(session.isNew()){
-            return"Front/index";
+            return "Front/index";
         }else{
 
         return"Front/espacelocataire";}
@@ -102,26 +107,27 @@ public class FrontController implements ErrorController {
     // post methode
 
     @RequestMapping(value="/inscription",method= RequestMethod .POST)
-    public String Sinscrire (@ModelAttribute("locataire") Locataire locataire, Model model) throws MessagingException {
+    public String Sinscrire (@ModelAttribute("locataire") Locataire locataire) throws MessagingException {
 
-         HttpSession session =request.getSession();
-         session.setAttribute("locataire",locataire);
 
-            Boolean a= frontService.testepseudo(locataire.getPseudo());
+            boolean a= frontService.testepseudo(locataire.getPseudo());
             boolean b =frontService.testeemail(locataire.getEmail());
-            if ( a|| b){
+            if ( a && b){
                 locataire.setEtat("inactif");
                 locataire.setSession(0);
                 locataire.setCodeActivation(frontService.generateActivationCode());
                 request.setAttribute("success",true);
+
+
+
                 frontService.sendingMail(locataire.getEmail(),"Code d'activation TALocation",locataire.getCodeActivation());
                 frontService.ajouterLocataire(locataire);
 
 
 
-                return "Front/connexion";
+                return "Front/seconnecter";
             }else{
-                model.addAttribute("success",false);
+
                 request.setAttribute("success",false);
                 return "Front/s'inscrire";
             }
@@ -138,7 +144,7 @@ public class FrontController implements ErrorController {
         if (locataire.size()==0){
             request.setAttribute("compteinexistant", true);
 
-        return"Front/activation";
+        return "Front/activation";
         }else {
             if (codeActivation.equals(locataire.get(0).getCodeActivation())) {
                 locataire.get(0).setEtat("approuvé");
@@ -214,7 +220,7 @@ public class FrontController implements ErrorController {
                 if (locataire.get(0).getEtat().equals("inactif")){
                     request.setAttribute("inactif", true);
                     System.out.println("//////////////////////////////////");
-                    return"Front/seconnecter";
+                    return"Front/activation";
                 }else{
                 session.setAttribute("locataire",locataire.get(0));
                 return "Front/espacelocataire";}
@@ -268,6 +274,55 @@ public class FrontController implements ErrorController {
 
     };
 
+
+   @RequestMapping(value="/rechercher",method= RequestMethod.POST)
+    public String rechercher(@RequestParam("catégorie") String catégorie, @RequestParam("modèle") String modèle,
+                             @RequestParam("marque") String marque, @RequestParam("boite") String boite , @RequestParam("energie") String energie,
+                             @RequestParam("range_2") int prixmax, @RequestParam("dateD") String dateD,@RequestParam("dateDH") String dateDH, @RequestParam("dateR") String dateR,
+                             @RequestParam("heureD") String heureD, @RequestParam("type") String type, @RequestParam("heureR") String heureR
+                             ) throws ParseException {
+
+       SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+
+
+
+
+
+       java.sql.Date  dateDDD ,  dateRRR,  dateDDDD;
+
+       Location location = new Location();
+       ArrayList<Vehicule> vehicules = null ;
+        if(type.equals("parjours")){
+
+            dateDDD = new java.sql.Date(format.parse(dateD).getTime());
+
+             dateRRR= new java.sql.Date(format.parse(dateR).getTime());
+            location.setDateD(dateDDD);
+            location.setDateR(dateRRR);
+             vehicules= frontService.rechercheParJour(catégorie,modèle,marque,boite,energie,dateDDD,dateRRR,prixmax);
+        }else{
+
+             dateDDDD = new java.sql.Date(format.parse(dateDH).getTime());
+            location.setHeureD(heureD);location.setHeureD(heureD);location.setDateD(dateDDDD);
+             vehicules= frontService.rechercheParHeure(catégorie,modèle,marque,boite,energie,dateDDDD,heureD,heureR,prixmax);
+        }
+
+
+
+
+       location.setType(type);
+
+       HttpSession session =request.getSession();
+        session.setAttribute("location" , location);
+        request.setAttribute("vehicules" , vehicules);
+
+
+
+
+        return "Front/réserver";
+
+
+    };
 
 
 

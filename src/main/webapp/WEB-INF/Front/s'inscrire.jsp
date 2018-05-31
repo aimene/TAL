@@ -249,7 +249,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <script>
     jQuery(document).ready(function($) {
 
-        $("#pseudo").onkeyup(function() {
+       /* $("#pseudo").keyup(function() {
             var pseudo=$("#pseudo").val();
 
             $.ajax({
@@ -268,7 +268,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                     debugger;
                     alert('error'); }
             });
-        });
+        });*/
     });
 
 

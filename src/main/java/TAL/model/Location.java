@@ -1,7 +1,7 @@
 package TAL.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name="location")
@@ -11,16 +11,25 @@ public class Location {
     private int idLocation;
 
     private int idLocataire;
+
     private int idVehicule;
     private Date dateD ;
     private Date  dateR ;
     private String heureD ;
 
-    private String nbrH ;
+    private String heureR ;
     private Double kmD;
     private double kmR;
     private String type ;
     private String etat ;
+
+    public String getHeureR() {
+        return heureR;
+    }
+
+    public void setHeureR(String heureR) {
+        this.heureR = heureR;
+    }
 
     public void setIdLocation(int idLocation) {
         this.idLocation = idLocation;
@@ -46,9 +55,7 @@ public class Location {
         this.heureD = heureD;
     }
 
-    public void setNbrH(String nbrH) {
-        this.nbrH = nbrH;
-    }
+
 
     public void setKmD(Double kmD) {
         this.kmD = kmD;
@@ -91,9 +98,7 @@ public class Location {
     }
 
 
-    public String getNbrH() {
-        return nbrH;
-    }
+
 
 
 

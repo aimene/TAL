@@ -2,8 +2,10 @@ package TAL.service;
 
 import TAL.Repository.RequetesFeedback;
 import TAL.Repository.RequetesLocataire;
+import TAL.Repository.RequetesVehicule;
 import TAL.model.Feedback;
 import TAL.model.Locataire;
+import TAL.model.Vehicule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.sql.Date;
 import java.util.ArrayList;
 
 @Service
@@ -19,6 +22,8 @@ public class FrontService {
     RequetesLocataire requetesLocataire;
     @Autowired
     RequetesFeedback requetesFeedback;
+    @Autowired
+    RequetesVehicule requetesVehicule;
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -66,6 +71,36 @@ public class FrontService {
     public Feedback ajouterFeedback(Feedback f){
         return requetesFeedback.save(f);
 }
+
+// filter
+
+    public ArrayList<Vehicule> getCatégorie(){
+        return  requetesVehicule.getCatégorie();
+    };
+    public ArrayList<Vehicule> getMarqueByCatégorie(String catégorie){
+        return  requetesVehicule.getMarqueByCatégorie(catégorie);
+    };
+    public ArrayList<Vehicule> getModèleByCatégorieAndMarque(String catégorie,String marque){
+        return  requetesVehicule.getModèleByCatégorieAndMarque(catégorie,marque);
+    };
+
+    public ArrayList<Vehicule> rechercheParJour(String catégorie, String modèle, String marque ,
+                                         String boite, String energie, Date dateD, Date dateR,
+             int prixmax)
+    {
+        return requetesVehicule.rechercherParJour(catégorie,modèle,marque,boite,energie,dateD,dateR,prixmax);
+    }
+
+    public ArrayList<Vehicule> rechercheParHeure(String catégorie, String modèle, String marque ,
+                                                String boite, String energie, Date dateD, String heureD , String heureR,
+                                                int prixmax)
+    {
+        return requetesVehicule.rechercherParHeure(catégorie,modèle,marque,boite,energie,dateD,heureD,heureR,prixmax);
+    }
+
+
+
+
 
     public void sendingMail(String to, String subject, String body) throws MessagingException {
         MimeMessage message=javaMailSender.createMimeMessage();

@@ -1,3 +1,5 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="TAL.model.Vehicule" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -68,14 +70,18 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
     <style type="">
     body{
-        background-color: whitesmoke !important;
+        background-color: #939393 !important;
         }
         label{
-            color: #eeedf2 ;margin-left: 0%;font-size: 1.5em;border-radius: 20px !important;
+            font-weight: bolder;
+
+            color: #2a2a2a ;margin-left: 0%;font-size: 1.4em;border-radius: 20px !important;
 
         }
         #filter {
-            background-color: rgb(16,16,16) !important;
+            background-image: url("images/filter.jpeg");
+            background-position-y: -200px;
+            background-color:#a8a8a8 !important;
             padding: 20px; border-radius: 20px !important;
 
             background-repeat: no-repeat; background-size: cover;
@@ -94,23 +100,50 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             font-weight: bolder; ;
         }
         .thumbnail{
-            background-color: rgb(16,16,16) !important;
-            border-radius: 20px !important;
 
+            border-radius: 20px !important;
+            background: radial-gradient(ellipse at center, rgba(181,189,200,1) 41%,rgba(130,140,149,1) 85%,
+            rgba(130,140,149,1) 85%,rgba(130,140,149,1) 99%,rgba(130,140,149,1) 99%,rgba(181,189,200,1) 100%,rgba(181,189,200,1) 100%) !important;
+
+            border-radius: 40px !important;
 
         }
         .thumbnail p {
-            color: #eeedf2 ;font-size: 1.2em;
+            color: black ;
         }
         .thumbnail h4 {
             font-size: 1.4em !important;
             font-weight: bolder !important;
-            color: #d84a38 !important;
+            color: #3f3f3f !important;
         }
         .thumbnail img{
             border-radius: 20px !important;
 
         }
+        .caption{
+            height: 200px;
+            overflow-y:scroll ;
+        }
+    .caption::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: inherit !important;
+    }
+
+    .caption::-webkit-scrollbar
+    {
+        border-radius: 10px;
+        width: 7px;
+        background-color: #F5F5F5;
+    }
+
+    .caption::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
         .reserver{
             background-color: #d84a38 !important;
             border-radius: 20px !important;
@@ -119,9 +152,26 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             margin-top: 1%;
 
         }
-        #prix{
+        .prix{
             color: #35aa47 !important;
         }
+        .form-control {
+            background-color: inherit !important;
+            color: #3f3f3f !important;
+
+        }
+
+    .irs-grid-text {
+        color: black !important;
+    }
+    .irs-min, .irs-max {
+        color: black !important;
+    }
+    .irs-line{
+
+        box-shadow: 1px 3px 5px 0.5px #333 !important;
+    }
+
     </style>
 
     <script>
@@ -129,8 +179,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
 
-            $("#parheure").hide();
 
+            $("#parheure").hide();
 
 
 
@@ -158,7 +208,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     </div>
     <!-- END EMPTY PAGE SIDEBAR -->
     <!-- BEGIN PAGE -->
-    <div class="page-content" style="background-color: whitesmoke !important">
+       <div class="page-content" style="background-color: whitesmoke !important">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
         <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -182,141 +232,144 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         </div>
         <div class="page-container">
             <div id="filter" style="">
+            <form action="/rechercher" method="post" >
                 <div class="row">
                     <p class=" form-group col-md-12" id="entete" >Trouvez le véhicule qui vous convient</p>
                 </div>
 
                 <div  class="row"   >
 
-                    <div class="form-group col-md-2  " >
-                        <label style="">Type de réservation</label>
-                        <select class="form-control btn red    "  id="typeréservation">
-                            <option class="type" value="parjours" >Par jours</option>
-                            <option class="type" value="parheures" >Par heures</option>
-                        </select>
-                    </div>
 
-
-                    <div class="form-group col-md-2  ">
-                        <label style="">Catégorié</label>
-                        <select class="form-control btn red    col-md-12" >
-                            <option >Option 1</option>
-
-                        </select>
-                    </div>
-                    <div class="form-group  col-md-2">
-                        <label>Marque</label>
-                        <select class="form-control btn red col-md-12" >
-                            <option>Option 1</option>
-
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label>Modèle</label>
-                        <select class="form-control btn red  col-md-12" >
-                            <option>Option 1</option>
-
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label>Energie</label>
-                        <select class="form-control btn red  col-md-12" >
-                            <option>Option 1</option>
-
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2" >
-                        <label class="active" >Boite</label>
-                        <select class="form-control btn red   col-md-12" >
-                            <option>Option 1</option>
-
-                        </select>
-                    </div>
-
-                    <div class="form-group col-md-4 ">
-                        <label class=" control-label "> Prix max</label>
-                        <div class=" col-md-12" >
-                            <input id="range_2" type="text" name="range_2" value="1000;10000" data-type="" data-step="500" data-postfix="da" data-from="3000" data-to="90000" data-hasgrid="true"  />
+                        <div class="form-group col-md-2  " >
+                            <label style="">Type de réservation</label>
+                            <select class="form-control btn red    "  id="typeréservation" name="type">
+                                <option class="type" value="parjours" >Par jours</option>
+                                <option class="type" value="parheures" >Par heures</option>
+                            </select>
                         </div>
+
+
+                        <div class="form-group col-md-2  ">
+                            <label style="">Catégorié</label>
+                            <select class="form-control    col-md-12"  id="catégorie" name="catégorie">
+                                <option value="" selected > Catégorie</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group  col-md-2">
+                            <label>Marque</label>
+                            <select class="form-control  col-md-12" id="marque" name="marque">
+                                <option value="" selected  > Marque</option>
+
+                            </select>
+                        </div>
+                    <div class="col-sm-offset-5"></div>
+                   </div>
+                <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Modèle</label>
+                            <select class="form-control  col-md-12" id="modèle" name="modèle">
+                                <option value="" selected > Modèle</option>
+
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Energie</label>
+                            <select class="form-control  col-md-12"  name="energie">
+                                <option value="essence" >Essence</option>
+                                <option value="diesel" >Diesel</option>
+                                <option value="gpl" >Gpl</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2" >
+                            <label class="active" >Boite</label>
+                            <select class="form-control   col-md-12"  name="boite">
+                                <option value="auto" >Auto</option>
+                                <option value="manuel" >Manuel</option>
+
+                            </select>
+                        </div>
+                    <div class="col-sm-offset-5"></div>
                     </div>
 
-                    <div id="parjour" class="rw">
-                        <div class="form-group col-md-6">
-                            <label class=" ">Date Début/fin</label>
 
-                            <div class="input-group  date-picker input-daterange  "  data-date="10/11/2012" data-date-format="dd/mm/yyyy">
-                                <span class="input-group-addon">de</span>
-                                <input  type="text" class="form-control btn red " name="from" placeholder="jj/mm/aaaa">
+                        <div id="parjour" class="row">
+                            <div class="form-group col-md-6">
+                                <label class=" ">Date Début/fin</label>
 
-                                <span class="input-group-addon">à</span>
-                                <input type="text" class="form-control btn red" name="to" placeholder="jj/mm/aaaa">
+                                <div class="input-group  date-picker input-daterange  "  data-date="10/11/2012" data-date-format="dd-mm-yyyy">
+                                    <span class="input-group-addon">de</span>
+                                    <input id="dateD" type="text" class="form-control  " name="dateD" placeholder="yyyy-mm-dd" required autocomplete="off" >
+
+                                    <span class="input-group-addon">à</span>
+                                    <input id="dateR" type="text" class="form-control " name="dateR" placeholder="yyyy-mm-dd"  required autocomplete="off">
+
+
+                                </div>
 
 
                             </div>
-
+                            <div class="col-sm-offset-5"></div>
 
                         </div>
+                        <div id="parheure" class="row">
+                            <div class="col-md-offset-6"></div>
+                            <div class="form-group col-md-2">
+                                <label class=" ">Date Début</label>
+                                <div class=" ">
+                                    <div class="input-group  date-picker input-daterange" data-date="10/11/2012" data-date-format="dd-mm-yyyy">
 
-                    </div>
-                    <div id="parheure" class="rw">
+                                        <input id="dateDH" type="text" class="form-control " name="dateDH" placeholder="jj/mm/aaaa"  required autocomplete="off">
 
-                        <div class="form-group col-md-3">
-                            <label class=" ">Date Début</label>
-                            <div class=" ">
-                                <div class="input-group  date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                                    </div>
 
-                                    <input type="text" class="form-control btn red" name="from" placeholder="jj/mm/aaaa">
-                                    <span class="input-group-btn">
-                                        <button class="btn default" type="button"><i class="icon-calendar"></i></button>
-                                        </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label class=" ">Heure Début</label>
+
+                                <div class="input-group ">
+                                    <input type="text" id="heureD" value="08:30" class="form-control " style="background-color: inherit !important" readonly="" name="heureD">
+
+                                </div>
+                          </div>
+                            <div class="form-group col-md-2">
+                                <label class=" ">Heure retour</label>
+                                <div class="input-group ">
+                                    <input type="text" id="heureR" value="08:30" class="form-control " style="background-color: inherit !important" name="heureR">
+
                                 </div>
 
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <label class=" ">Heure Début</label>
-
-
-
-
-                            <div class="input-group ">
-                                <input type="text" id="clockface_2" value="08:30" class="form-control btn red" style="background-color: #d84a38 !important" readonly="">
-                                <span class="input-group-btn">
-                                        <button class="btn default" type="button"  id="clockface_2_toggle"><i class="icon-time"></i></button>
-                                </span>
-                            </div>
-
-
+                            <div class="col-sm-offset-5"></div>
 
 
                         </div>
-                        <div class="form-group col-md-2">
-                            <label class=" ">Nombre d'heures </label>
-
-
-                            <div class="input-group ">
-                                <input type="number"  class=" form-control  btn red col-md-12"   >
-
-                            </div>
-                            <
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class=" control-label "> Prix max</label>
+                        <div class=" col-md-12" >
+                            <input id="range_2" type="text" name="range_2" value="100;10000" data-type="" data-step="500" data-postfix="da" data-from="3000" data-to="90000" data-hasgrid="true"  />
                         </div>
-
-
                     </div>
-
+                    <div class="col-sm-offset-5"></div>
                 </div>
+
+
 
 
 
                 <div class="row" style="margin-top: 2%">
 
                     <div class="form-group " style=" text-align: center;" >
-                        <div class="btn green offset " style="border-radius: 20px !important; background-color: grey; width: 50%;">Rechercher</div>
+                        <button class="btn green " type="submit" style="border-radius: 20px !important; background-color: grey; width: 50%;">Rechercher</button>
                     </div>
 
                 </div>
-
+            </form>
             </div>
         </div>
 
@@ -326,13 +379,34 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
             <div class="row" id="affichage">
+                <%
+                if ((request.getAttribute("vehicules") != null)){
+                ArrayList<Vehicule> vehicules =(ArrayList<Vehicule>)request.getAttribute("vehicules");
+
+                if (vehicules == null){%>
+                <div class="note note-danger">
+                    <h4 class="block">Aucun vehicules disponibles</h4>
+                    <p>
+
+                    </p>
+                </div>
+
+             <%   }else{
+
+                    for (Vehicule v :vehicules){
+
+                %>
                 <div class="col-md-3" >
                     <div class="thumbnail" style="">
-                        <img src="http://tech.firstpost.com/wp-content/uploads/2014/09/Apple_iPhone6_Reuters.jpg" alt="" class="img-responsive">
+                        <img src="<% out.print(v.getImagepath());%>" alt="" class="img-responsive">
                         <div class="caption">
-                            <h4 class="pull-right" id="prix">$700.99</h4>
-                            <h4 >Mobile Product</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <h4 class="pull-right" class="prix">Prix location par jour<% out.print(v.getPlj());%></h4>
+                            <h4 class="pull-right" class="prix">Prix location par jour<% out.print(v.getPlj());%></h4>
+                            <h4 > Catégorie <% out.print(v.getCatégorie());%></h4>
+                            <p> Marque :<% out.print(v.getMarque());%></p>
+                            <p> Modèle:<% out.print(v.getModèle());%></p>
+                            <p> Boite:<% out.print(v.getBoite());%></p>
+                            <p> Couleur :<%= v.getCouleur() %></p>
                         </div>
 
                         <div class="space-ten"></div>
@@ -343,6 +417,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         <div class="space-ten"></div>
                     </div>
                 </div>
+                <% };};};%>
 
 
             </div>
@@ -365,10 +440,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         </div>
 
 
-        <div class="row">
 
-
-        </div>
 
 
 
@@ -446,29 +518,155 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-
+<script src="cleave/cleave.min.js"></script>
 <script>
     jQuery(document).ready(function() {
         App.init();
         UIIonSliders.init();
         FormComponents.init();
 
+        var cleave = new Cleave('#heureD', {
+            delimiters: [':'],
+            blocks: [2, 2],
+            min:['08:00'],
+            numericOnly: true
+
+        });
+        var cleave1 = new Cleave('#heureR', {
+            delimiters: [':'],
+            blocks: [2, 2],
+
+            numericOnly: true
+
+        });
 
 
+        getCatégorie();
+
+        $("#marque").click(function() {
+
+            var catégorie = $("#catégorie").val();
+            var marque = $("#marque").val();
+
+            getModèleByCatégorieAndMarque(catégorie,marque)
+
+
+        });
+        $("#catégorie").click(function() {
+
+            var catégorie = $("#catégorie").val();
+            getMarqueByCatégorie(catégorie);
+
+
+        });
+
+        function getCatégorie() {
+            debugger;
+            $.ajax({
+                type: "GET",
+                url: "/getCatégorie",
+
+                success: function (result) {
+                    debugger;
+                    var op =" <option value=\"\" selected > Catégorie</option>";
+                    $.each(result, function (index, result) {
+                        op= op+"<option value='" +result.catégorie + "'>" + result.catégorie + "</option>";
+                    });
+                    $("#catégorie").html(op);
+                },
+                error: function (response) {
+
+                    alert('error');
+                }
+            });
+        };
+
+        function getMarqueByCatégorie(catégorie) {
+            debugger;
+            $.ajax({
+                type: "GET",
+                data:{'catégorie': catégorie},
+                url: "/getMarqueByCatégorie",
+
+                success: function (result) {
+                    debugger;
+                    var op =" <option value=\"\" selected > Marque</option>";
+                    $.each(result, function (index, result) {
+                        op= op+"<option value='" +result.marque + "'>" + result.marque + "</option>";
+                    });
+                    $("#marque").html(op);
+                },
+                error: function (response) {
+
+                    alert('error marque');
+                }
+            });
+        };
+
+        function getModèleByCatégorieAndMarque(catégorie,marque) {
+            debugger;
+            $.ajax({
+                type: "GET",
+                data:{'catégorie': catégorie,'marque': marque},
+                url: "/getModelByMarqueAndCatégorie",
+
+                success: function (result) {
+                    debugger;
+                    var op =" <option value=\"\" selected > Modèle</option>";
+                    $.each(result, function (index, result) {
+                        op= op+"<option value='" +result.modèle + "'>" + result.modèle + "</option>";
+                    });
+                    $("#modèle").html(op);
+                },
+                error: function (response) {
+
+                    alert('error modèle');
+                }
+            });
+        };
+        var d = new Date();
+
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+
+        var output = (day<10 ? '0' : '') + day + '-' +
+            (month<10 ? '0' : '') + month + '-' +
+            d.getFullYear();
+
+        $("#dateD").val(output);
+        $("#dateR").val(output);
+        $("#dateDH").val(output);
 
         $("#typeréservation").change(function() {
             if ($(".type:selected").val()=="parheures") {
-                $("#parheure").show();
-                $("#parjour").hide();
-            }  else {
                 $("#parjour").show();
-                $("#parheure").hide();
+                $("#parheure").show();
+                $("#dateD").val(output);
+                $("#dateR").val(output);
+              /*  $("#dateD").attr('required','required');
+                $("#dateR").attr('required','required');
+                $("#dateDH").removeAttr('required');*/
 
 
-            }
+                $("#parjour").hide();
+
+            }else{
+                if($(".type:selected").val()=="parjours"){
+
+                    $("#parjour").show();
+                /*    $("#dateD").removeAttr('required');
+                    $("#dateR").removeAttr('required');
+                    $("#dateDH").attr('required','required');*/
+
+                    $("#dateDH").val(output);
+                    $("#parheure").hide();
+
+
+                }}
 
         });
-        UIExtendedModals.init();
+
+        //  UIExtendedModals.init();
 
 
 
